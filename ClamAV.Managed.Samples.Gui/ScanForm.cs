@@ -41,7 +41,7 @@ namespace ClamAV.Managed.Samples.Gui
                     try
                     {
                         // Load database from the default location.
-                        _clamAV.LoadDatabase(@"E:\Projects\ClamAV.Managed_Working\ClamAV.Managed.Demo\Database\");
+                        _clamAV.LoadDatabase();
 
                         // Signal database load is complete.
                         this.Invoke(new Action(() =>
