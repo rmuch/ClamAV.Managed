@@ -167,32 +167,8 @@ namespace ClamAV.Managed
             uint signo = 0;
             uint optnum = 0;
 
-            // The publicly-exposed .NET API could use the same enum values as the native library,
-            // but this way allows us more freedom to change the managed interface.
-            if (options.HasFlag(LoadOptions.StandardOptions))
-            {
-                optnum |= UnsafeNativeMethods.CL_DB_STDOPT;
-            }
-            if (options.HasFlag(LoadOptions.PhishingSignatures))
-            {
-                optnum |= UnsafeNativeMethods.CL_DB_PHISHING;
-            }
-            if (options.HasFlag(LoadOptions.PhishingURLs))
-            {
-                optnum |= UnsafeNativeMethods.CL_DB_PHISHING_URLS;
-            }
-            if (options.HasFlag(LoadOptions.PotentiallyUnwantedApplications))
-            {
-                optnum |= UnsafeNativeMethods.CL_DB_PUA;
-            }
-            if (options.HasFlag(LoadOptions.OfficialOnly))
-            {
-                optnum |= UnsafeNativeMethods.CL_DB_OFFICIAL_ONLY;
-            }
-            if (options.HasFlag(LoadOptions.Bytecode))
-            {
-                optnum |= UnsafeNativeMethods.CL_DB_BYTECODE;
-            }
+            // Convert LoadOptions parameter.
+            optnum = (uint)options;
 
             // If the path hasn't been specified, use ClamAV's default hardcoded path.
             if (string.IsNullOrEmpty(path))
@@ -229,84 +205,8 @@ namespace ClamAV.Managed
             ulong scanned = 0;
             uint options = 0;
 
-            // Handle scanOptions parameter.
-            // TODO: This should eventually be changed so that the ScanOptions enumeration values are the same as CL_SCAN_* constants.
-            if (scanOptions.HasFlag(ScanOptions.StandardOptions))
-            {
-                options |= UnsafeNativeMethods.CL_SCAN_STDOPT;
-            }
-            if (scanOptions.HasFlag(ScanOptions.Raw))
-            {
-                options |= UnsafeNativeMethods.CL_SCAN_RAW;
-            }
-            if (scanOptions.HasFlag(ScanOptions.Archive))
-            {
-                options |= UnsafeNativeMethods.CL_SCAN_ARCHIVE;
-            }
-            if (scanOptions.HasFlag(ScanOptions.BlockEncryptedFiles))
-            {
-                options |= UnsafeNativeMethods.CL_SCAN_BLOCKENCRYPTED;
-            }
-            if (scanOptions.HasFlag(ScanOptions.ScanMail))
-            {
-                options |= UnsafeNativeMethods.CL_SCAN_MAIL;
-            }
-            if (scanOptions.HasFlag(ScanOptions.OLE2))
-            {
-                options |= UnsafeNativeMethods.CL_SCAN_OLE2;
-            }
-            if (scanOptions.HasFlag(ScanOptions.PDF))
-            {
-                options |= UnsafeNativeMethods.CL_SCAN_PDF;
-            }
-            if (scanOptions.HasFlag(ScanOptions.PE))
-            {
-                options |= UnsafeNativeMethods.CL_SCAN_PE;
-            }
-            if (scanOptions.HasFlag(ScanOptions.ELF))
-            {
-                options |= UnsafeNativeMethods.CL_SCAN_ELF;
-            }
-            if (scanOptions.HasFlag(ScanOptions.BlockBroken))
-            {
-                options |= UnsafeNativeMethods.CL_SCAN_BLOCKBROKEN;
-            }
-            if (scanOptions.HasFlag(ScanOptions.HTML))
-            {
-                options |= UnsafeNativeMethods.CL_SCAN_HTML;
-            }
-            if (scanOptions.HasFlag(ScanOptions.Algorithmic))
-            {
-                options |= UnsafeNativeMethods.CL_SCAN_ALGORITHMIC;
-            }
-            if (scanOptions.HasFlag(ScanOptions.PhishingBlockSSL))
-            {
-                options |= UnsafeNativeMethods.CL_SCAN_PHISHING_BLOCKSSL;
-            }
-            if (scanOptions.HasFlag(ScanOptions.PhishingBlockCloak))
-            {
-                options |= UnsafeNativeMethods.CL_SCAN_PHISHING_BLOCKCLOAK;
-            }
-            if (scanOptions.HasFlag(ScanOptions.Structured))
-            {
-                options |= UnsafeNativeMethods.CL_SCAN_STRUCTURED;
-            }
-            if (scanOptions.HasFlag(ScanOptions.StructuredSSNNormal))
-            {
-                options |= UnsafeNativeMethods.CL_SCAN_STRUCTURED_SSN_NORMAL;
-            }
-            if (scanOptions.HasFlag(ScanOptions.StructuredSSNStripped))
-            {
-                options |= UnsafeNativeMethods.CL_SCAN_STRUCTURED_SSN_STRIPPED;
-            }
-            if (scanOptions.HasFlag(ScanOptions.PartialMessage))
-            {
-                options |= UnsafeNativeMethods.CL_SCAN_PARTIAL_MESSAGE;
-            }
-            if (scanOptions.HasFlag(ScanOptions.HeuristicPrecedence))
-            {
-                options |= UnsafeNativeMethods.CL_SCAN_HEURISTIC_PRECEDENCE;
-            }
+            // Convert ScanOptions parameter.
+            options = (uint)scanOptions;
 
             // Perform scan
             var result = (UnsafeNativeMethods.cl_error_t)UnsafeNativeMethods.cl_scanfile(filePath, ref virusNamePtr, ref scanned, _engine, options);
