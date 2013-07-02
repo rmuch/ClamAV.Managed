@@ -28,83 +28,91 @@ namespace ClamAV.Managed
     /// Option flags for performing scans.
     /// </summary>
     [Flags]
-    public enum ScanOptions
+    public enum ScanOptions : uint
     {
         /// <summary>
         /// Alias for a recommended set of scan options.
         /// </summary>
-        StandardOptions = 1,
+        StandardOptions = Archive | ScanMail | OLE2 | PDF | HTML | PE | Algorithmic | ELF,
         /// <summary>
         /// Disable support for special files.
         /// </summary>
-        Raw = 2,
+        Raw = 0x0,
         /// <summary>
         /// Transparently scan various archive formats.
         /// </summary>
-        Archive = 4,
+        Archive = 0x1,
         /// <summary>
         /// Detect encrypted archives as viruses.
         /// </summary>
-        BlockEncryptedFiles = 8,
+        BlockEncryptedFiles = 0x8,
         /// <summary>
         /// Scan mail files.
         /// </summary>
-        ScanMail = 16,
+        ScanMail = 0x02,
         /// <summary>
         /// Scan OLE2 containers, including Microsoft Office files and Windows Installer packages.
         /// </summary>
-        OLE2 = 32,
+        OLE2 = 0x4,
         /// <summary>
         /// Scan Adobe PDF files.
         /// </summary>
-        PDF = 64,
+        PDF = 0x4000,
         /// <summary>
         /// Enable deep scanning and unpacking of Portable Executable files.
         /// </summary>
-        PE = 128,
+        PE = 0x20,
         /// <summary>
         /// Enable support for ELF executable files.
         /// </summary>
-        ELF = 256,
+        ELF = 0x2000,
         /// <summary>
         /// Try to detect and mark broken executables.
         /// </summary>
-        BlockBroken = 512,
+        BlockBroken = 0x40,
         /// <summary>
         /// Enable HTML normalisation (including ScrEnc decryption).
         /// </summary>
-        HTML = 1024,
+        HTML = 0x10,
         /// <summary>
         /// Enable algorithmic virus detection.
         /// </summary>
-        Algorithmic = 2048,
+        Algorithmic = 0x200,
         /// <summary>
         /// Always block SSL mismatches in URLs.
         /// </summary>
-        PhishingBlockSSL = 4096,
+        PhishingBlockSSL = 0x800,
         /// <summary>
         /// Always block cloaked URLs.
         /// </summary>
-        PhishingBlockCloak = 8192,
+        PhishingBlockCloak = 0x1000,
         /// <summary>
         /// Enable the DLP module to scan for credit card numbers and SSNs.
         /// </summary>
-        Structured = 16384,
+        Structured = 0x8000,
         /// <summary>
         /// Search for SSNs structured as xx-yy-zzzz.
         /// </summary>
-        StructuredSSNNormal = 32768,
+        StructuredSSNNormal = 0x10000,
         /// <summary>
         /// Search for SSNs structured as xxyyzzzz.
         /// </summary>
-        StructuredSSNStripped = 65536,
+        StructuredSSNStripped = 0x20000,
         /// <summary>
         /// Scan RFC1341 messages split over many emails.
         /// </summary>
-        PartialMessage = 131072,
+        PartialMessage = 0x40000,
         /// <summary>
         /// Allow heuristic matches to take precedence.
         /// </summary>
-        HeuristicPrecedence = 262144
+        HeuristicPrecedence = 0x80000,
+        /// <summary>
+        /// OLE2 containers containing VBA macros will be marked as infected.
+        /// </summary>
+        BlockMacros = 0x100000,
+        /// <summary>
+        /// Return all matches in a scan result.
+        /// </summary>
+        AllMatches = 0x200000
     }
 }

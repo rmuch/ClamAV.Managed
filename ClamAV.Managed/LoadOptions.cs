@@ -28,31 +28,43 @@ namespace ClamAV.Managed
     /// Option flags for loading definitions databases.
     /// </summary>
     [Flags]
-    public enum LoadOptions
+    public enum LoadOptions : uint
     {
         /// <summary>
         /// Load a recommended set of scan options.
         /// </summary>
-        StandardOptions = 1,
+        StandardOptions = PhishingSignatures | PhishingURLs | Bytecode,
         /// <summary>
         /// Load phishing signatures.
         /// </summary>
-        PhishingSignatures = 2,
+        PhishingSignatures = 0x2,
         /// <summary>
         /// Initialize the phishing detection module and load .wdb and .pdb files.
         /// </summary>
-        PhishingURLs = 4,
+        PhishingURLs = 0x8,
         /// <summary>
         /// Load signatures for potentially unwanted applications.
         /// </summary>
-        PotentiallyUnwantedApplications = 8,
+        PotentiallyUnwantedApplications = 0x10,
+        /// <summary>
+        /// Include potentially unwanted applications.
+        /// </summary>
+        IncludePotentiallyUnwantedApplications = 0x100,
+        /// <summary>
+        /// Exclude potentially unwanted applications.
+        /// </summary>
+        ExcludePotentiallyUnwantedApplications = 0x200,
         /// <summary>
         /// Only load official signatures from digitally signed databases.
         /// </summary>
-        OfficialOnly = 16,
+        OfficialOnly = 0x1000,
         /// <summary>
         /// Load bytecode.
         /// </summary>
-        Bytecode = 32
+        Bytecode = 0x2000,
+        /// <summary>
+        /// Load unsigned bytecode.
+        /// </summary>
+        UnsignedBytecode = 0x8000
     }
 }
