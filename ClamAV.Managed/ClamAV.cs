@@ -231,5 +231,62 @@ namespace ClamAV.Managed
                 throw new ClamAVException((int)result, ErrorString((int)result));
             }
         }
+
+        public delegate void FileScannedCallback(string path, ScanResult result, string virusName);
+
+        /// <summary>
+        /// Scan a directory for viruses, optionally recursing into subdirectories.
+        /// </summary>
+        /// <param name="directoryPath">Path to scan.</param>
+        /// <param name="fileScannedCallback">Callback function.</param>
+        /// <param name="scanOptions">Scan options.</param>
+        /// <param name="recurse">Enter subdirectories.</param>
+        /// <param name="maxDepth">Maximum depth to scan, or zero for unlimited.</param>
+        public void ScanDirectory(string directoryPath, FileScannedCallback fileScannedCallback,
+            ScanOptions scanOptions = ScanOptions.StandardOptions, bool recurse = true, int maxDepth = 9)
+        {
+            var pathStack = new Stack<Tuple<string /* path */, int /* depth */>>();
+
+            // Push the starting directory onto the stack.
+            pathStack.Push(Tuple.Create(directoryPath, 1));
+
+            while (pathStack.Count > 0)
+            {
+                var stackState = pathStack.Pop();
+
+                var currentPath = stackState.Item1;
+                var currentDepth = stackState.Item2;
+
+                var attributes = File.GetAttributes(currentPath);
+
+                // If we're in a directory, push all files and subdirectories to the stack.
+                if ((attributes & FileAttributes.Directory) == FileAttributes.Directory)
+                {
+                    // Check if we're not about to go too deep.
+                    if (maxDepth == 0 || currentDepth < maxDepth)
+                    {
+                        var subFiles = Directory.GetFiles(currentPath);
+                        foreach (var file in subFiles)
+                        {
+                            pathStack.Push(Tuple.Create(file, currentDepth + 1));
+                        }
+
+                        var subDirectories = Directory.GetDirectories(currentPath);
+                        foreach (var directory in subDirectories)
+                        {
+                            pathStack.Push(Tuple.Create(directory, currentDepth + 1));
+                        }
+                    }
+                }
+                // If this is a file, scan it.
+                else
+                {
+                    var virusName = string.Empty;
+                    var scanResult = ScanFile(currentPath, out virusName, ScanOptions.StandardOptions);
+
+                    fileScannedCallback(currentPath, scanResult, virusName);
+                }
+            }
+        }
     }
 }
