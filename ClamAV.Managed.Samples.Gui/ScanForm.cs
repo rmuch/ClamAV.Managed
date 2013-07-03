@@ -71,9 +71,7 @@ namespace ClamAV.Managed.Samples.Gui
         private void browseButton_Click(object sender, EventArgs e)
         {
             // Show context menu strip to select between a file and directory to scan.
-            // fileOrDirectoryContextMenuStrip.Show(browseButton.PointToScreen(new Point(1, browseButton.Height)));
-
-            fileToolStripMenuItem_Click(sender, e);
+            fileOrDirectoryContextMenuStrip.Show(browseButton.PointToScreen(new Point(1, browseButton.Height)));
         }
 
         private void fileToolStripMenuItem_Click(object sender, EventArgs e)
@@ -108,6 +106,51 @@ namespace ClamAV.Managed.Samples.Gui
             if ((attribs & FileAttributes.Directory) == FileAttributes.Directory)
             {
                 // Perform directory scan.
+                Thread scanThread = new Thread(() =>
+                    {
+                        var scannedFiles = new List<Tuple<string, ScanResult, string>>();
+
+                        this.Invoke(new Action(() =>
+                        {
+                            logTextBox.AppendText("==========\r\n");
+                            logTextBox.AppendText("\r\n");
+                            logTextBox.AppendText("Scanning directory " + scanPath + "\r\n");
+                        }));
+
+                        _clamAV.ScanDirectory(scanPath,
+                            (file, result, virus) =>
+                            {
+                                scannedFiles.Add(Tuple.Create(file, result, virus));
+
+                                this.Invoke(new Action(() =>
+                                {
+                                    logTextBox.AppendText("Scanning: " + file + "\r\n");
+                                }));
+                            });
+
+                        // Analyse results.
+                        var infectedFiles = scannedFiles.Where(f => f.Item2 == ScanResult.Virus);
+
+                        this.Invoke(new Action(() =>
+                        {
+                            logTextBox.AppendText("==========\r\n");
+                            logTextBox.AppendText("\r\n");
+                            logTextBox.AppendText(scanPath + "scanned\r\n");
+                            logTextBox.AppendText("\r\n");
+                            logTextBox.AppendText(string.Format("{0} file(s) scanned, {1} infected\r\n",
+                                scannedFiles.Count, infectedFiles.Count()));
+                            logTextBox.AppendText("\r\n");
+
+                            foreach (var file in infectedFiles)
+                            {
+                                logTextBox.AppendText(string.Format("{0} infected with {1}\r\n", file.Item1, file.Item3));
+                            }
+
+                            logTextBox.AppendText("\r\n");
+                        }));
+                    });
+
+                scanThread.Start();
             }
             else
             {
