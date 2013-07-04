@@ -40,8 +40,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BytecodeOptions.cs" />
-    <Compile Include="ClamAV.cs" />
-    <Compile Include="ClamAVException.cs" />
+    <Compile Include="ClamEngine.cs" />
+    <Compile Include="ClamException.cs" />
     <Compile Include="ScanResult.cs" />
     <Compile Include="LoadOptions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
