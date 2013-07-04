@@ -28,15 +28,15 @@ namespace ClamAV.Managed
     /// Exception type corresponding to a ClamAV error.
     /// </summary>
     [Serializable]
-    public class ClamAVException : Exception
+    public class ClamException : Exception
     {
         private int _errorCode;
 
         public int ErrorCode { get { return _errorCode; } }
 
-        public ClamAVException() { }
+        public ClamException() { }
 
-        public ClamAVException(int errorCode, string message)
+        public ClamException(int errorCode, string message)
             : base(message)
         {
             _errorCode = errorCode;

@@ -47,7 +47,7 @@ namespace ClamAV.Managed
                 int result = UnsafeNativeMethods.cl_init(UnsafeNativeMethods.CL_INIT_DEFAULT);
 
                 if (result != UnsafeNativeMethods.CL_SUCCESS)
-                    throw new ClamAVException(result, ErrorString(result));
+                    throw new ClamException(result, ErrorString(result));
             }
 
             initialized = true;
@@ -438,7 +438,7 @@ namespace ClamAV.Managed
             {
                 int error = _engine.ToInt32();
 
-                throw new ClamAVException(error, ErrorString(error));
+                throw new ClamException(error, ErrorString(error));
             }
         }
 
@@ -463,7 +463,7 @@ namespace ClamAV.Managed
             {
                 // XXX: FxCop doesn't like throwing an exception on Dispose - 
                 //      this should be removed or only thrown on very serious errors.
-                throw new ClamAVException(result, ErrorString(result));
+                throw new ClamException(result, ErrorString(result));
             }
         }
 
@@ -489,7 +489,7 @@ namespace ClamAV.Managed
 
             if (loadResult != UnsafeNativeMethods.cl_error_t.CL_SUCCESS)
             {
-                throw new ClamAVException((int)loadResult, ErrorString((int)loadResult));
+                throw new ClamException((int)loadResult, ErrorString((int)loadResult));
             }
 
             // Compile the database.
@@ -497,7 +497,7 @@ namespace ClamAV.Managed
 
             if (compileResult != UnsafeNativeMethods.cl_error_t.CL_SUCCESS)
             {
-                throw new ClamAVException((int)compileResult, ErrorString((int)compileResult));
+                throw new ClamException((int)compileResult, ErrorString((int)compileResult));
             }
         }
 
@@ -538,7 +538,7 @@ namespace ClamAV.Managed
             else
             {
                 // Probably an error condition.
-                throw new ClamAVException((int)result, ErrorString((int)result));
+                throw new ClamException((int)result, ErrorString((int)result));
             }
         }
 
