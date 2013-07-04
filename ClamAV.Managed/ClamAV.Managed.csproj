@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BytecodeOptions.cs" />
     <Compile Include="ClamAV.cs" />
     <Compile Include="ClamAVException.cs" />
     <Compile Include="ScanResult.cs" />

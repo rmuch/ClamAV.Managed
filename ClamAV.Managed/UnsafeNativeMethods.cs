@@ -220,7 +220,7 @@ namespace ClamAV.Managed
         internal static extern int cl_engine_set_str(IntPtr engine, cl_engine_field field, string str);
 
         [DllImport(libraryName, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
-        internal static extern string cl_engine_get_str(IntPtr engine, cl_engine_field field, IntPtr err);
+        internal static extern IntPtr cl_engine_get_str(IntPtr engine, cl_engine_field field, IntPtr err);
 
         [DllImport(libraryName, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
         internal static extern IntPtr cl_engine_settings_copy(IntPtr engine);

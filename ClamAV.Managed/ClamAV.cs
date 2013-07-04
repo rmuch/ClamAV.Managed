@@ -108,6 +108,316 @@ namespace ClamAV.Managed
         }
 
         /// <summary>
+        /// Get a numerical settings value.
+        /// </summary>
+        /// <param name="setting">Setting key.</param>
+        /// <returns>Setting value.</returns>
+        internal long EngineGetNum(UnsafeNativeMethods.cl_engine_field setting)
+        {
+            return UnsafeNativeMethods.cl_engine_get_num(_engine, setting, IntPtr.Zero);
+        }
+
+        /// <summary>
+        /// Set a numerical setting value.
+        /// </summary>
+        /// <param name="setting">Setting key.</param>
+        /// <param name="value">Setting value.</param>
+        internal void EngineSetNum(UnsafeNativeMethods.cl_engine_field setting, long value)
+        {
+            int i = UnsafeNativeMethods.cl_engine_set_num(_engine, setting, value);
+        }
+
+        /// <summary>
+        /// Get a string setting value.
+        /// </summary>
+        /// <param name="setting">Setting key.</param>
+        /// <returns>Setting value.</returns>
+        internal string EngineGetStr(UnsafeNativeMethods.cl_engine_field setting)
+        {
+            return Marshal.PtrToStringAnsi(UnsafeNativeMethods.cl_engine_get_str(_engine, setting, IntPtr.Zero));
+        }
+
+        /// <summary>
+        /// Set a string setting value.
+        /// </summary>
+        /// <param name="setting">Setting key.</param>
+        /// <param name="value">Setting value.</param>
+        internal void EngineSetStr(UnsafeNativeMethods.cl_engine_field setting, string value)
+        {
+            int i = UnsafeNativeMethods.cl_engine_set_str(_engine, setting, value);
+        }
+
+        /// <summary>
+        /// Maximum amount of data in a file to be scanned.
+        /// </summary>
+        public ulong MaxScanSize
+        {
+            get
+            {
+                return (ulong)EngineGetNum(UnsafeNativeMethods.cl_engine_field.CL_ENGINE_MAX_SCANSIZE);
+            }
+            set
+            {
+                EngineSetNum(UnsafeNativeMethods.cl_engine_field.CL_ENGINE_MAX_SCANSIZE, (long)value);
+            }
+        }
+
+        /// <summary>
+        /// Maximum file size to be scanned.
+        /// </summary>
+        public ulong MaxFileSize
+        {
+            get
+            {
+                return (ulong)EngineGetNum(UnsafeNativeMethods.cl_engine_field.CL_ENGINE_MAX_FILESIZE);
+            }
+            set
+            {
+                EngineSetNum(UnsafeNativeMethods.cl_engine_field.CL_ENGINE_MAX_FILESIZE, (long)value);
+            }
+        }
+
+        /// <summary>
+        /// Maximum recursion depth.
+        /// </summary>
+        public uint MaxRecursion
+        {
+            get
+            {
+                return (uint)EngineGetNum(UnsafeNativeMethods.cl_engine_field.CL_ENGINE_MAX_RECURSION);
+            }
+            set
+            {
+                EngineSetNum(UnsafeNativeMethods.cl_engine_field.CL_ENGINE_MAX_RECURSION, (long)value);
+            }
+        }
+
+        /// <summary>
+        /// Maximum number of files to scan inside an archive or container.
+        /// </summary>
+        public uint MaxFiles
+        {
+            get
+            {
+                return (uint)EngineGetNum(UnsafeNativeMethods.cl_engine_field.CL_ENGINE_MAX_FILES);
+            }
+            set
+            {
+                EngineSetNum(UnsafeNativeMethods.cl_engine_field.CL_ENGINE_MAX_FILES, (long)value);
+            }
+        }
+
+        /// <summary>
+        /// Minimum count of credit card numbers to trigger a detection.
+        /// </summary>
+        public uint MinCCCount
+        {
+            get
+            {
+                return (uint)EngineGetNum(UnsafeNativeMethods.cl_engine_field.CL_ENGINE_MIN_CC_COUNT);
+            }
+            set
+            {
+                EngineSetNum(UnsafeNativeMethods.cl_engine_field.CL_ENGINE_MIN_CC_COUNT, (long)value);
+            }
+        }
+
+        /// <summary>
+        /// Minimum count of SSNs to trigger a detection.
+        /// </summary>
+        public uint MinSSNCount
+        {
+            get
+            {
+                return (uint)EngineGetNum(UnsafeNativeMethods.cl_engine_field.CL_ENGINE_MIN_SSN_COUNT);
+            }
+            set
+            {
+                EngineSetNum(UnsafeNativeMethods.cl_engine_field.CL_ENGINE_MIN_SSN_COUNT, (long)value);
+            }
+        }
+
+        /// <summary>
+        /// Potentially unwanted application categories.
+        /// </summary>
+        public string PuaCategories
+        {
+            get
+            {
+                return EngineGetStr(UnsafeNativeMethods.cl_engine_field.CL_ENGINE_PUA_CATEGORIES);
+            }
+            set
+            {
+                EngineSetStr(UnsafeNativeMethods.cl_engine_field.CL_ENGINE_PUA_CATEGORIES, value);
+            }
+        }
+
+        /// <summary>
+        /// Database options.
+        /// </summary>
+        public LoadOptions DatabaseOptions
+        {
+            get
+            {
+                return (LoadOptions)EngineGetNum(UnsafeNativeMethods.cl_engine_field.CL_ENGINE_DB_OPTIONS);
+            }
+            set
+            {
+                EngineSetNum(UnsafeNativeMethods.cl_engine_field.CL_ENGINE_DB_OPTIONS, (long)value);
+            }
+        }
+
+        /// <summary>
+        /// Database version.
+        /// </summary>
+        public uint DatabaseVersion
+        {
+            get
+            {
+                return (uint)EngineGetNum(UnsafeNativeMethods.cl_engine_field.CL_ENGINE_DB_VERSION);
+            }
+            set
+            {
+                EngineSetNum(UnsafeNativeMethods.cl_engine_field.CL_ENGINE_DB_VERSION, (long)value);
+            }
+        }
+
+        /// <summary>
+        /// Database time as a UNIX timestamp.
+        /// </summary>
+        public uint DatabaseTime
+        {
+            get
+            {
+                return (uint)EngineGetNum(UnsafeNativeMethods.cl_engine_field.CL_ENGINE_DB_TIME);
+            }
+            set
+            {
+                EngineSetNum(UnsafeNativeMethods.cl_engine_field.CL_ENGINE_DB_TIME, (long)value);
+            }
+        }
+
+        /// <summary>
+        /// Only use Aho-Corasick pattern matcher.
+        /// </summary>
+        public uint ACOnly
+        {
+            get
+            {
+                return (uint)EngineGetNum(UnsafeNativeMethods.cl_engine_field.CL_ENGINE_AC_ONLY);
+            }
+            set
+            {
+                EngineSetNum(UnsafeNativeMethods.cl_engine_field.CL_ENGINE_AC_ONLY, (long)value);
+            }
+        }
+
+        /// <summary>
+        /// Minimum trie depth for AC algorithm.
+        /// </summary>
+        public uint ACMinDepth
+        {
+            get
+            {
+                return (uint)EngineGetNum(UnsafeNativeMethods.cl_engine_field.CL_ENGINE_AC_MINDEPTH);
+            }
+            set
+            {
+                EngineSetNum(UnsafeNativeMethods.cl_engine_field.CL_ENGINE_AC_MINDEPTH, (long)value);
+            }
+        }
+
+        /// <summary>
+        /// Maximum trie depth for AC algorithm.
+        /// </summary>
+        public uint ACMaxDepth
+        {
+            get
+            {
+                return (uint)EngineGetNum(UnsafeNativeMethods.cl_engine_field.CL_ENGINE_AC_MAXDEPTH);
+            }
+            set
+            {
+                EngineSetNum(UnsafeNativeMethods.cl_engine_field.CL_ENGINE_AC_MAXDEPTH, (long)value);
+            }
+        }
+
+        /// <summary>
+        /// Path to temporary directory.
+        /// </summary>
+        public string TempDir
+        {
+            get
+            {
+                return EngineGetStr(UnsafeNativeMethods.cl_engine_field.CL_ENGINE_TMPDIR);
+            }
+            set
+            {
+                EngineSetStr(UnsafeNativeMethods.cl_engine_field.CL_ENGINE_TMPDIR, value);
+            }
+        }
+
+        /// <summary>
+        /// Automatically delete temporary files.
+        /// </summary>
+        public uint KeepTempFiles
+        {
+            get
+            {
+                return (uint)EngineGetNum(UnsafeNativeMethods.cl_engine_field.CL_ENGINE_KEEPTMP);
+            }
+            set
+            {
+                EngineSetNum(UnsafeNativeMethods.cl_engine_field.CL_ENGINE_KEEPTMP, (long)value);
+            }
+        }
+
+        /// <summary>
+        /// Bytecode security mode.
+        /// </summary>
+        public BytecodeSecurity BytecodeSecurity
+        {
+            get
+            {
+                return (BytecodeSecurity)EngineGetNum(UnsafeNativeMethods.cl_engine_field.CL_ENGINE_BYTECODE_SECURITY);
+            }
+            set
+            {
+                EngineSetNum(UnsafeNativeMethods.cl_engine_field.CL_ENGINE_BYTECODE_SECURITY, (long)value);
+            }
+        }
+
+        /// <summary>
+        /// Bytecode timeout.
+        /// </summary>
+        public uint BytecodeTimeout
+        {
+            get
+            {
+                return (uint)EngineGetNum(UnsafeNativeMethods.cl_engine_field.CL_ENGINE_BYTECODE_TIMEOUT);
+            }
+            set
+            {
+                EngineSetNum(UnsafeNativeMethods.cl_engine_field.CL_ENGINE_BYTECODE_TIMEOUT, (long)value);
+            }
+        }
+
+        /// <summary>
+        /// Bytecode mode.
+        /// </summary>
+        public BytecodeMode BytecodeMode
+        {
+            get
+            {
+                return (BytecodeMode)EngineGetNum(UnsafeNativeMethods.cl_engine_field.CL_ENGINE_BYTECODE_MODE);
+            }
+            set
+            {
+                EngineSetNum(UnsafeNativeMethods.cl_engine_field.CL_ENGINE_BYTECODE_MODE, (long)value);
+            }
+        }
+
+        /// <summary>
         /// Creates a new ClamAV engine instance.
         /// </summary>
         /// <param name="debug">Enable verbose ClamAV debug logging.</param>
