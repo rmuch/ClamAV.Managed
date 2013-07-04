@@ -14,7 +14,7 @@ namespace ClamAV.Managed.Samples.Gui
 {
     public partial class ScanForm : Form
     {
-        private ClamAV _clamAV;
+        private ClamEngine _clamAV;
 
         public ScanForm()
         {
@@ -24,7 +24,7 @@ namespace ClamAV.Managed.Samples.Gui
             this.Icon = SystemIcons.Shield;
 
             // Instantiate ClamAV engine.
-            _clamAV = new ClamAV();
+            _clamAV = new ClamEngine();
 
             logTextBox.AppendText("ClamAV Version: " + _clamAV.Version +"\r\n");
 
