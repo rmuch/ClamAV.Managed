@@ -29,7 +29,7 @@ namespace ClamAV.Managed
     /// <summary>
     /// Encapsulates an instance of the ClamAV engine.
     /// </summary>
-    public class ClamAV : IDisposable
+    public class ClamEngine : IDisposable
     {
         /// <summary>
         /// Whether the ClamAV library has been globally initialized.
@@ -421,7 +421,7 @@ namespace ClamAV.Managed
         /// Creates a new ClamAV engine instance.
         /// </summary>
         /// <param name="debug">Enable verbose ClamAV debug logging.</param>
-        public ClamAV(bool debug = false)
+        public ClamEngine(bool debug = false)
         {
             // Enable debug mode.
             if (debug)
@@ -442,7 +442,7 @@ namespace ClamAV.Managed
             }
         }
 
-        ~ClamAV()
+        ~ClamEngine()
         {
             Dispose(false);
         }
