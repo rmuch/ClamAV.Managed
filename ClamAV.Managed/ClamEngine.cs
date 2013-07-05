@@ -450,7 +450,7 @@ namespace ClamAV.Managed
             // Enable debug mode.
             if (debug)
                 UnsafeNativeMethods.cl_debug();
-            
+
             // Initialize ClamAV library.
             initialize();
 
@@ -492,11 +492,37 @@ namespace ClamAV.Managed
         }
 
         /// <summary>
+        /// Load databases from the default hardcoded path using standard options.
+        /// </summary>
+        public void LoadDatabase()
+        {
+            LoadDatabase(DatabaseDirectory, LoadOptions.StandardOptions);
+        }
+
+        /// <summary>
+        /// Load databases from the default hardcoded path using custom options.
+        /// </summary>
+        /// <param name="options">Options with which to load the database.</param>
+        public void LoadDatabase(LoadOptions options)
+        {
+            LoadDatabase(DatabaseDirectory, options);
+        }
+
+        /// <summary>
+        /// Load databases from a custom path using standard options.
+        /// </summary>
+        /// <param name="path">Path to the database file or a directory containing database files.</param>
+        public void LoadDatabase(string path)
+        {
+            LoadDatabase(path, LoadOptions.StandardOptions);
+        }
+
+        /// <summary>
         /// Loads a database file or directory into the engine.
         /// </summary>
         /// <param name="path">Path to the database file or a directory containing database files.</param>
         /// <param name="options">Options with which to load the database.</param>
-        public void LoadDatabase(string path = "", LoadOptions options = LoadOptions.StandardOptions)
+        public void LoadDatabase(string path, LoadOptions options)
         {
             uint signo = 0;
             uint optnum = 0;
