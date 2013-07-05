@@ -439,8 +439,13 @@ namespace ClamAV.Managed
         /// <summary>
         /// Creates a new ClamAV engine instance.
         /// </summary>
+        public ClamEngine() : this(false) { }
+
+        /// <summary>
+        /// Creates a new ClamAV engine instance.
+        /// </summary>
         /// <param name="debug">Enable verbose ClamAV debug logging.</param>
-        public ClamEngine(bool debug = false)
+        public ClamEngine(bool debug)
         {
             // Enable debug mode.
             if (debug)
