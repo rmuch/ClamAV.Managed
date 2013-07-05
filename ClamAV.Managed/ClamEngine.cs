@@ -526,13 +526,24 @@ namespace ClamAV.Managed
         }
 
         /// <summary>
-        /// Scans a file for viruses.
+        /// Scans a file for viruses with the default scan options.
         /// </summary>
         /// <param name="filePath">Path to the file to be scanned.</param>
         /// <param name="virusName">Output variable for the virus name, if detected.</param>
+        /// <returns>File status.</returns>
+        public ScanResult ScanFile(string filePath, out string virusName)
+        {
+            return ScanFile(filePath, ScanOptions.StandardOptions, out virusName);
+        }
+
+        /// <summary>
+        /// Scans a file for viruses.
+        /// </summary>
+        /// <param name="filePath">Path to the file to be scanned.</param>
         /// <param name="scanOptions">Scan options.</param>
-        /// <returns></returns>
-        public ScanResult ScanFile(string filePath, out string virusName, ScanOptions scanOptions = ScanOptions.StandardOptions)
+        /// <param name="virusName">Output variable for the virus name, if detected.</param>
+        /// <returns>File status.</returns>
+        public ScanResult ScanFile(string filePath, ScanOptions scanOptions, out string virusName)
         {
             IntPtr virusNamePtr = IntPtr.Zero;
 
@@ -616,7 +627,7 @@ namespace ClamAV.Managed
                 else
                 {
                     var virusName = string.Empty;
-                    var scanResult = ScanFile(currentPath, out virusName, ScanOptions.StandardOptions);
+                    var scanResult = ScanFile(currentPath, ScanOptions.StandardOptions, out virusName);
 
                     fileScannedCallback(currentPath, scanResult, virusName);
                 }
