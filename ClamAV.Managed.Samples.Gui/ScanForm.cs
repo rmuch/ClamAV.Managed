@@ -166,7 +166,7 @@ namespace ClamAV.Managed.Samples.Gui
 
                     string virusName = "";
 
-                    ScanResult scanResult = _clamAV.ScanFile(scanPath, out virusName);
+                    ScanResult scanResult = _clamAV.ScanFile(scanPath, ScanOptions.StandardOptions, out virusName);
 
                     // Report scan completion.
                     this.Invoke(new Action(() =>
