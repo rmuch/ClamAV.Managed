@@ -108,6 +108,25 @@ namespace ClamAV.Managed
         }
 
         /// <summary>
+        /// Cached database directory path.
+        /// </summary>
+        private string _databaseDirectory;
+
+        /// <summary>
+        /// ClamAV hard-coded default database directory.
+        /// </summary>
+        public string DatabaseDirectory
+        {
+            get
+            {
+                if (_databaseDirectory == null)
+                    _databaseDirectory = UnmarshalString(UnsafeNativeMethods.cl_retdbdir());
+
+                return _databaseDirectory;
+            }
+        }
+
+        /// <summary>
         /// Get a numerical settings value.
         /// </summary>
         /// <param name="setting">Setting key.</param>
@@ -482,7 +501,7 @@ namespace ClamAV.Managed
 
             // If the path hasn't been specified, use ClamAV's default hardcoded path.
             if (string.IsNullOrEmpty(path))
-                path = UnmarshalString(UnsafeNativeMethods.cl_retdbdir());
+                path = DatabaseDirectory;
 
             // Invoke the native method to load the database.
             var loadResult = (UnsafeNativeMethods.cl_error_t)UnsafeNativeMethods.cl_load(path, _engine, ref signo, optnum);
