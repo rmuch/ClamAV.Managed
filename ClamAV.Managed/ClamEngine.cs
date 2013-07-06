@@ -31,6 +31,8 @@ namespace ClamAV.Managed
     /// </summary>
     public class ClamEngine : IDisposable
     {
+        #region Global Initialization
+
         /// <summary>
         /// Whether the ClamAV library has been globally initialized.
         /// </summary>
@@ -53,6 +55,10 @@ namespace ClamAV.Managed
             initialized = true;
         }
 
+        #endregion
+
+        #region Utility Functions
+
         /// <summary>
         /// Returns the description string of a ClamAV error code.
         /// </summary>
@@ -74,6 +80,10 @@ namespace ClamAV.Managed
         {
             return Marshal.PtrToStringAnsi(ptr);
         }
+
+        #endregion
+
+        #region Properties
 
         /// <summary>
         /// Internal handle to the ClamAV engine.
@@ -125,6 +135,10 @@ namespace ClamAV.Managed
                 return _databaseDirectory;
             }
         }
+
+        #endregion
+
+        #region Engine Settings
 
         /// <summary>
         /// Get a numerical settings value.
@@ -436,6 +450,10 @@ namespace ClamAV.Managed
             }
         }
 
+        #endregion
+
+        #region Constructors and Destructors
+
         /// <summary>
         /// Creates a new ClamAV engine instance.
         /// </summary>
@@ -490,6 +508,10 @@ namespace ClamAV.Managed
                 throw new ClamException(result, ErrorString(result));
             }
         }
+
+        #endregion
+
+        #region ClamAV Methods
 
         /// <summary>
         /// Load databases from the default hardcoded path using standard options.
@@ -659,5 +681,7 @@ namespace ClamAV.Managed
                 }
             }
         }
+
+        #endregion
     }
 }
