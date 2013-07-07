@@ -625,18 +625,44 @@ namespace ClamAV.Managed
             }
         }
 
+        /// <summary>
+        /// Delegate for file scan completion callback.
+        /// </summary>
+        /// <param name="path">Path to file which has been scanned.</param>
+        /// <param name="result">Scan parameters.</param>
+        /// <param name="virusName">Signature name if file is infected.</param>
         public delegate void FileScannedCallback(string path, ScanResult result, string virusName);
+
+        /// <summary>
+        /// Scan a directory for viruses with default scan options, recursing into subdirectories.
+        /// </summary>
+        /// <param name="directoryPath">Path to scan.</param>
+        /// <param name="fileScannedCallback">Called after a file has been scanned.</param>
+        public void ScanDirectory(string directoryPath, FileScannedCallback fileScannedCallback)
+        {
+            ScanDirectory(directoryPath, ScanOptions.StandardOptions, fileScannedCallback, true, 0);
+        }
+
+        /// <summary>
+        /// Scan a directory for viruses with custom scan options, recursing into subdirectories.
+        /// </summary>
+        /// <param name="directoryPath">Path to scan.</param>
+        /// <param name="scanOptions">Scan options.</param>
+        /// <param name="fileScannedCallback">Called after a file has been scanned.</param>
+        public void ScanDirectory(string directoryPath, ScanOptions scanOptions, FileScannedCallback fileScannedCallback)
+        {
+            ScanDirectory(directoryPath, ScanOptions.StandardOptions, fileScannedCallback, true, 0);
+        }
 
         /// <summary>
         /// Scan a directory for viruses, optionally recursing into subdirectories.
         /// </summary>
         /// <param name="directoryPath">Path to scan.</param>
-        /// <param name="fileScannedCallback">Callback function.</param>
         /// <param name="scanOptions">Scan options.</param>
+        /// <param name="fileScannedCallback">Called after a file has been scanned.</param>
         /// <param name="recurse">Enter subdirectories.</param>
         /// <param name="maxDepth">Maximum depth to scan, or zero for unlimited.</param>
-        public void ScanDirectory(string directoryPath, FileScannedCallback fileScannedCallback,
-            ScanOptions scanOptions = ScanOptions.StandardOptions, bool recurse = true, int maxDepth = 9)
+        public void ScanDirectory(string directoryPath, ScanOptions scanOptions, FileScannedCallback fileScannedCallback, bool recurse, int maxDepth)
         {
             var pathStack = new Stack<Tuple<string /* path */, int /* depth */>>();
 
