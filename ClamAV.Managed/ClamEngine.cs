@@ -546,15 +546,15 @@ namespace ClamAV.Managed
         /// <param name="options">Options with which to load the database.</param>
         public void LoadDatabase(string path, LoadOptions options)
         {
+            // Validate arguments.
+            if (string.IsNullOrEmpty(path))
+                throw new ArgumentNullException("path");
+
             uint signo = 0;
             uint optnum = 0;
 
             // Convert LoadOptions parameter.
             optnum = (uint)options;
-
-            // If the path hasn't been specified, use ClamAV's default hardcoded path.
-            if (string.IsNullOrEmpty(path))
-                path = DatabaseDirectory;
 
             // Invoke the native method to load the database.
             var loadResult = (UnsafeNativeMethods.cl_error_t)UnsafeNativeMethods.cl_load(path, _engine, ref signo, optnum);
@@ -593,6 +593,10 @@ namespace ClamAV.Managed
         /// <returns>File status.</returns>
         public ScanResult ScanFile(string filePath, ScanOptions scanOptions, out string virusName)
         {
+            // Validate arguments.
+            if (string.IsNullOrEmpty(filePath))
+                throw new ArgumentNullException("filePath");
+
             IntPtr virusNamePtr = IntPtr.Zero;
 
             ulong scanned = 0;
@@ -664,6 +668,13 @@ namespace ClamAV.Managed
         /// <param name="maxDepth">Maximum depth to scan, or zero for unlimited.</param>
         public void ScanDirectory(string directoryPath, ScanOptions scanOptions, FileScannedCallback fileScannedCallback, bool recurse, int maxDepth)
         {
+            // Validate arguments.
+            if (string.IsNullOrEmpty(directoryPath))
+                throw new ArgumentNullException("directoryPath");
+
+            if (fileScannedCallback == null)
+                throw new ArgumentNullException("fileScannedCallback");
+
             var pathStack = new Stack<Tuple<string /* path */, int /* depth */>>();
 
             // Push the starting directory onto the stack.
