@@ -701,7 +701,7 @@ namespace ClamAV.Managed
                 else
                 {
                     var virusName = string.Empty;
-                    var scanResult = ScanFile(currentPath, ScanOptions.StandardOptions, out virusName);
+                    var scanResult = ScanFile(currentPath, scanOptions, out virusName);
 
                     fileScannedCallback(currentPath, scanResult, virusName);
                 }
