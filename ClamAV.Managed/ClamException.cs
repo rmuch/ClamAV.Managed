@@ -34,6 +34,8 @@ namespace ClamAV.Managed
 
         public int ErrorCode { get { return _errorCode; } }
 
+        public ClamError ClamError { get { return (ClamError)_errorCode; } }
+
         public ClamException() { }
 
         public ClamException(int errorCode, string message)
