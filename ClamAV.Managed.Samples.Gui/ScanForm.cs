@@ -135,7 +135,7 @@ namespace ClamAV.Managed.Samples.Gui
                         {
                             logTextBox.AppendText("==========\r\n");
                             logTextBox.AppendText("\r\n");
-                            logTextBox.AppendText(scanPath + "scanned\r\n");
+                            logTextBox.AppendText(scanPath + " scanned\r\n");
                             logTextBox.AppendText("\r\n");
                             logTextBox.AppendText(string.Format("{0} file(s) scanned, {1} infected\r\n",
                                 scannedFiles.Count, infectedFiles.Count()));
