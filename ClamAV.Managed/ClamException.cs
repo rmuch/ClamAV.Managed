@@ -32,16 +32,53 @@ namespace ClamAV.Managed
     {
         private int _errorCode;
 
+        /// <summary>
+        /// Integer error code.
+        /// </summary>
         public int ErrorCode { get { return _errorCode; } }
 
+        /// <summary>
+        /// ClamAV error status.
+        /// </summary>
         public ClamError ClamError { get { return (ClamError)_errorCode; } }
 
+        /// <summary>
+        /// Initializes a new instance of the ClamException class.
+        /// </summary>
         public ClamException() { }
 
+        /// <summary>
+        /// Initializes a new instance of the ClamException class with a specified error message.
+        /// </summary>
+        /// <param name="message">The message that describes the error. </param>
+        public ClamException(string message) : base(message) { }
+
+        /// <summary>
+        /// Initializes a new instance of the ClamException class with a specified error message and a reference to the inner exception that is the cause of this exception.
+        /// </summary>
+        /// <param name="message">The error message that explains the reason for the exception.</param>
+        /// <param name="inner">The exception that is the cause of the current exception, or a null reference if no inner exception is specified. </param>
+        public ClamException(string message, Exception inner) : base(message, inner) { }
+
+        /// <summary>
+        /// Initializes a new instance of the ClamException class with a specified error code and message.
+        /// </summary>
+        /// <param name="errorCode">The ClamAV error code for this exception.</param>
+        /// <param name="message">The ClamAV error message for this exception.</param>
         public ClamException(int errorCode, string message)
             : base(message)
         {
             _errorCode = errorCode;
         }
+
+        /// <summary>
+        /// Initializes a new instance of the ClamException class with serialized data.
+        /// </summary>
+        /// <param name="info">The SerializationInfo that holds the serialized object data about the exception being thrown.</param>
+        /// <param name="context">The StreamingContext that contains contextual information about the source or destination.</param>
+        protected ClamException(
+          System.Runtime.Serialization.SerializationInfo info,
+          System.Runtime.Serialization.StreamingContext context)
+            : base(info, context) { }
     }
 }
