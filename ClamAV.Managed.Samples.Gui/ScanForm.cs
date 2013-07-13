@@ -26,7 +26,7 @@ namespace ClamAV.Managed.Samples.Gui
             // Instantiate ClamAV engine.
             _clamAV = new ClamEngine();
 
-            logTextBox.AppendText("ClamAV Version: " + _clamAV.Version +"\r\n");
+            logTextBox.AppendText("ClamAV Version: " + _clamAV.Version + "\r\n");
 
             logTextBox.AppendText("Loading signatures from default location...\r\n");
 
@@ -112,6 +112,9 @@ namespace ClamAV.Managed.Samples.Gui
 
                         this.Invoke(new Action(() =>
                         {
+                            scanProgressBar.Style = ProgressBarStyle.Marquee;
+                            scanProgressBar.Value = 100;
+
                             logTextBox.AppendText("==========\r\n");
                             logTextBox.AppendText("\r\n");
                             logTextBox.AppendText("Scanning directory " + scanPath + "\r\n");
@@ -147,6 +150,9 @@ namespace ClamAV.Managed.Samples.Gui
                             }
 
                             logTextBox.AppendText("\r\n");
+
+                            scanProgressBar.Style = ProgressBarStyle.Blocks;
+                            scanProgressBar.Value = 100;
                         }));
                     });
 
@@ -160,6 +166,8 @@ namespace ClamAV.Managed.Samples.Gui
                     // Signal start of scan on UI thread.
                     this.Invoke(new Action(() =>
                     {
+                        scanProgressBar.Style = ProgressBarStyle.Blocks;
+
                         statusLabel.Text = "Scanning...";
                         scanProgressBar.Value = 10;
                     }));
