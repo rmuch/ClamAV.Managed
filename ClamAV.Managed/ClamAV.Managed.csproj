@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="BytecodeOptions.cs" />
     <Compile Include="ClamEngine.cs" />
+    <Compile Include="ClamError.cs" />
     <Compile Include="ClamException.cs" />
     <Compile Include="ScanResult.cs" />
     <Compile Include="LoadOptions.cs" />
