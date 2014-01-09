@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("ClamAV.Managed.Tests")]
-[assembly: AssemblyDescription("Managed bindings for ClamAV")]
+[assembly: AssemblyDescription("Managed bindings for ClamAV - unit test suite")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("ClamAV.Managed.Tests")]
