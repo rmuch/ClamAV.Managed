@@ -21,7 +21,8 @@ Prerequisites
 -------------
 
 To use ClamAV.Managed, P/Invoke must be able to locate libclamav, either in 
-your binary's execution directory or at some location in your system PATH.
+your binary's execution directory or at some location in your system's library
+search path.
 
 You can obtain ClamAV binaries compiled for Windows at
 http://oss.netfarm.it/clamav/. At the moment, only the Win32 version is
@@ -48,6 +49,11 @@ You need to obtain ClamAV databases. By default, ClamAV looks for databases in
 a folder called `db` in the current working directory. You can specify an 
 arbitrary location from which to load virus databases as an argument to the 
 ClamEngine.LoadDatabase method.
+
+You can find a list of ClamAV database mirrors at
+http://www.clamav.net/mirrors.html. Databases will be named main.cvd, daily.cvd,
+bytecode.cvd, safebrowsing.cvd in the root directory of the mirror. More
+information about obtaining ClamAV databases can be found on the ClamAV website.
 
 Samples
 -------
