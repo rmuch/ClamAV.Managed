@@ -489,6 +489,9 @@ namespace ClamAV.Managed
             Dispose(false);
         }
 
+        /// <summary>
+        /// Free the unmanaged resource associated with this ClamAV engine instance.
+        /// </summary>
         public void Dispose()
         {
             Dispose(true);
@@ -496,6 +499,10 @@ namespace ClamAV.Managed
             GC.SuppressFinalize(this);
         }
 
+        /// <summary>
+        /// Free the unmanaged resource associated with this ClamAV engine instance.
+        /// </summary>
+        /// <param name="b">Whether the dispose method has been called from the finalizer.</param>
         protected virtual void Dispose(bool b)
         {
             // Free ClamAV engine instance.
