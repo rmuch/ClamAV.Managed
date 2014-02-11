@@ -37,14 +37,23 @@ namespace ClamAV.Managed.Tests
         [SetUp]
         public void SetUpClamEngine()
         {
+            if (!TestHelpers.ClamAVDynamicLibraryExists())
+            {
+                Assert.Ignore("libclamav dynamic library is missing from the unit test binary directory.");
+                return;
+            }
+
             _clamEngine = new ClamEngine();
         }
 
         [TearDown]
         public void TearDownClamEngine()
         {
-            _clamEngine.Dispose();
-            _clamEngine = null;
+            if (_clamEngine != null)
+            {
+                _clamEngine.Dispose();
+                _clamEngine = null;
+            }
         }
 
         [Test]
