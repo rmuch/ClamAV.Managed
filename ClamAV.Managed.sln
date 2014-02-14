@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30110.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClamAV.Managed", "ClamAV.Managed\ClamAV.Managed.csproj", "{35282915-E7DC-4103-907E-2CE0A656F941}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClamAV.Managed.Samples.Gui", "ClamAV.Managed.Samples.Gui\ClamAV.Managed.Samples.Gui.csproj", "{A115449F-E757-4AAB-90AA-3C72CE373CB5}"
@@ -21,6 +23,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentat
 		README.md = README.md
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClamAV.Managed.PowerShell", "ClamAV.Managed.PowerShell\ClamAV.Managed.PowerShell.csproj", "{C1F8AE4A-FDA7-4751-A716-E359702B78E7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +43,10 @@ Global
 		{3F4B64D9-0B16-433F-B2A5-9E4EA6976F91}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3F4B64D9-0B16-433F-B2A5-9E4EA6976F91}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3F4B64D9-0B16-433F-B2A5-9E4EA6976F91}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C1F8AE4A-FDA7-4751-A716-E359702B78E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C1F8AE4A-FDA7-4751-A716-E359702B78E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C1F8AE4A-FDA7-4751-A716-E359702B78E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C1F8AE4A-FDA7-4751-A716-E359702B78E7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
