@@ -1,4 +1,4 @@
-# ClamAV.Managed - Managed Bindings for ClamAV
+# Managed Bindings for ClamAV
 
 ## License Information
 
@@ -33,6 +33,8 @@ working directory, or an arbitrary location specified in your program.
 
 ## Getting Started
 
+### ClamAV.Managed Library
+
 To get started using ClamAV.Managed in your project, you need to add a 
 reference to ClamAV.Managed.dll.
 
@@ -49,6 +51,30 @@ You can find a list of ClamAV database mirrors at
 http://www.clamav.net/mirrors.html. Databases will be named main.cvd, daily.cvd,
 bytecode.cvd, safebrowsing.cvd in the root directory of the mirror. More
 information about obtaining ClamAV databases can be found on the ClamAV website.
+
+### ClamAV.Managed.PowerShell Cmdlets
+
+To use the cmdlets provided by ClamAV.Managed.PowerShell, use the `New-ClamEngine`
+cmdlet.
+
+1. Use `Import-Module` to load the ClamAV.Managed.PowerShell library. Assume
+   we have created a directory C:\ClamAV-Managed\, containing ClamAV.Managed.dll,
+   ClamAV.Managed.PowerShell.dll, libclamav.dll and a subdirectory containing
+   definitions datases called `db`. We're now ready to proceed.
+   `Import-Module C:\ClamAV-Managed\ClamAV.Managed.PowerShell.dll`
+2. Create an instance of the ClamAV engine.
+   `PS C:\> $eng = New-ClamEngine -WithDatabase C:\ClamAV-Managed\db`
+3. If you didn't provide a `-WithDatabase` parameter to `New-ClamEngine`, use
+   `Load-Database` to load a definitions database.
+   `PS C:\> Load-Database -Engine $eng -Path C:\ClamAV-Managed\db`
+4. To scan a file:
+   `PS C:\> Scan-File -Engine $eng -Path C:\File.exe`
+5. To scan a directory:
+   `PS C:\> Scan-Directory -Engine $eng -Path C:\Directory\`
+
+`Load-Database` will, by default, look for databases in the `db` subdirectory
+of the directory containing the ClamAV.Managed.PowerShell dynamic library.
+However, you may specify a path manually with the `-DatabasePath` parameter.
 
 ## Samples
 
