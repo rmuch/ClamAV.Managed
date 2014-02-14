@@ -1,14 +1,11 @@
-ClamAV.Managed - Managed Bindings for ClamAV
-============================================
+# ClamAV.Managed - Managed Bindings for ClamAV
 
-License Information
--------------------
+## License Information
 
 This project is licensed under the terms of the GNU General Public License,
 version 2. You can find a full copy of the license text in GPLv2.txt.
 
-Notices
--------
+## Notices
 
 This program is distributed in the hope that it will be useful, but WITHOUT 
 ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS 
@@ -17,8 +14,7 @@ FOR A PARTICULAR PURPOSE.
 While the public version of this library is still in early development, the
 type names and class interfaces are subject to change.
 
-Prerequisites
--------------
+## Prerequisites
 
 To use ClamAV.Managed, P/Invoke must be able to locate libclamav, either in 
 your binary's execution directory or at some location in your system's library
@@ -35,8 +31,7 @@ For file scanning to work, you need to download ClamAV databases from
 http://www.clamav.net, either to a folder named `db` in your application's 
 working directory, or an arbitrary location specified in your program.
 
-Getting Started
----------------
+## Getting Started
 
 To get started using ClamAV.Managed in your project, you need to add a 
 reference to ClamAV.Managed.dll.
@@ -55,8 +50,7 @@ http://www.clamav.net/mirrors.html. Databases will be named main.cvd, daily.cvd,
 bytecode.cvd, safebrowsing.cvd in the root directory of the mirror. More
 information about obtaining ClamAV databases can be found on the ClamAV website.
 
-Samples
--------
+## Samples
 
 Refer to the project ClamAV.Managed.Samples.Gui to see an example of
 ClamAV.Managed in action. To run the sample, you need to obtain libclamav, as 
