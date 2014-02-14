@@ -36,10 +36,7 @@ namespace ClamAV.Managed.Tests
         public void SetUp()
         {
             if (!TestHelpers.TestFilesDirectoryExists())
-            {
                 Assert.Ignore("TestFiles directory is missing.");
-                return;
-            }
 
             _clamEngine = new ClamEngine();
         }
