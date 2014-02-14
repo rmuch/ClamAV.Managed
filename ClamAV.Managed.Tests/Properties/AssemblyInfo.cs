@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("ClamAV.Managed.Tests")]
-[assembly: AssemblyCopyright("Copyright © Rupert Muchembled 2011, 2013")]
+[assembly: AssemblyCopyright("Copyright © Rupert Muchembled 2011, 2013-2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
