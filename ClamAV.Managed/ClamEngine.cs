@@ -160,7 +160,10 @@ namespace ClamAV.Managed
         /// <param name="value">Setting value.</param>
         internal void EngineSetNum(UnsafeNativeMethods.cl_engine_field setting, long value)
         {
-            int i = UnsafeNativeMethods.cl_engine_set_num(_engine, setting, value);
+            int error = UnsafeNativeMethods.cl_engine_set_num(_engine, setting, value);
+
+            if (error != UnsafeNativeMethods.CL_SUCCESS)
+                throw new ClamException(error, ErrorString(error));
         }
 
         /// <summary>
@@ -180,7 +183,10 @@ namespace ClamAV.Managed
         /// <param name="value">Setting value.</param>
         internal void EngineSetStr(UnsafeNativeMethods.cl_engine_field setting, string value)
         {
-            int i = UnsafeNativeMethods.cl_engine_set_str(_engine, setting, value);
+            int error = UnsafeNativeMethods.cl_engine_set_str(_engine, setting, value);
+
+            if (error != UnsafeNativeMethods.CL_SUCCESS)
+                throw new ClamException(error, ErrorString(error));
         }
 
         /// <summary>
