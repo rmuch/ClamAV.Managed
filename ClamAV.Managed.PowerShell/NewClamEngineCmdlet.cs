@@ -36,12 +36,7 @@ namespace ClamAV.Managed.PowerShell
 
         protected override void ProcessRecord()
         {
-            ClamEngine clamEngine;
-
-            if (DebugMode.IsPresent)
-                clamEngine = new ClamEngine(true);
-            else
-                clamEngine = new ClamEngine();
+            var clamEngine = new ClamEngine(DebugMode.IsPresent);
 
             if (!String.IsNullOrEmpty(WithDatabase))
                 clamEngine.LoadDatabase(WithDatabase);
