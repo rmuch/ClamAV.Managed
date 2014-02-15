@@ -17,11 +17,8 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Management.Automation;
-using System.Text;
 
 namespace ClamAV.Managed.PowerShell
 {
