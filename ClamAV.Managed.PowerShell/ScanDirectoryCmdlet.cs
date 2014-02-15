@@ -37,7 +37,7 @@ namespace ClamAV.Managed.PowerShell
         [Parameter(Mandatory = false, HelpMessage = "Whether clean files should be included in the results.")]
         public SwitchParameter IncludeCleanFiles { get; set; }
 
-        [Parameter(Mandatory = true, Position = 0)]
+        [Parameter(Mandatory = true, Position = 0, HelpMessage = "Path to the directory to scan.")]
         public string Path { get; set; }
 
         protected override void ProcessRecord()

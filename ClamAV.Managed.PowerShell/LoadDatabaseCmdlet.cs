@@ -36,7 +36,7 @@ namespace ClamAV.Managed.PowerShell
         [Parameter(Mandatory = true, HelpMessage = "ClamEngine created by New-ClamEngine.")]
         public ClamEngine Engine { get; set; }
 
-        [Parameter(Mandatory = false, Position = 0)]
+        [Parameter(Mandatory = false, Position = 0, HelpMessage = "Path to the database to load.")]
         public string DatabasePath { get; set; }
 
         protected override void ProcessRecord()

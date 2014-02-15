@@ -35,7 +35,7 @@ namespace ClamAV.Managed.PowerShell
         [Parameter(Mandatory = true, HelpMessage = "ClamEngine created by New-ClamEngine.")]
         public ClamEngine Engine { get; set; }
 
-        [Parameter(Mandatory = true, Position = 0)]
+        [Parameter(Mandatory = true, Position = 0, HelpMessage = "Path to the file to scan.")]
         public string Path { get; set; }
 
         protected override void ProcessRecord()

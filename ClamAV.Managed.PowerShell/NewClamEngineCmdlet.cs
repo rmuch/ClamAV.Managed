@@ -32,10 +32,10 @@ namespace ClamAV.Managed.PowerShell
     [Cmdlet(VerbsCommon.New, "ClamEngine")]
     public class NewClamEngineCmdlet : Cmdlet
     {
-        [Parameter(Mandatory = false)]
+        [Parameter(Mandatory = false, HelpMessage = "Initialize libclamav in debug mode.")]
         public SwitchParameter DebugMode { get; set; }
 
-        [Parameter(Mandatory = false)]
+        [Parameter(Mandatory = false, HelpMessage = "Path to the database to load.")]
         public string WithDatabase { get; set; }
 
         protected override void ProcessRecord()
