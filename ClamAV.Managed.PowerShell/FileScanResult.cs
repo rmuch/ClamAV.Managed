@@ -24,19 +24,26 @@ namespace ClamAV.Managed.PowerShell
     /// </summary>
     public class FileScanResult
     {
+        internal FileScanResult(string path, bool infected, string virusName)
+        {
+            Path = path;
+            Infected = infected;
+            VirusName = virusName;
+        }
+
         /// <summary>
         /// Path to the file that has been scanned.
         /// </summary>
-        public string Path { get; set; }
+        public string Path { get; private set; }
 
         /// <summary>
         /// Whether a virus has been detected.
         /// </summary>
-        public bool Infected { get; set; }
+        public bool Infected { get; private set; }
 
         /// <summary>
         /// If a virus has been detected, VirusName will contain the name.
         /// </summary>
-        public string VirusName { get; set; }
+        public string VirusName { get; private set; }
     }
 }

@@ -39,12 +39,7 @@ namespace ClamAV.Managed.PowerShell
 
             var scanResult = Engine.ScanFile(Path, out virusName);
 
-            var fileScanResult = new FileScanResult
-            {
-                Path = Path,
-                Infected = scanResult == ScanResult.Virus,
-                VirusName = virusName
-            };
+            var fileScanResult = new FileScanResult(Path, scanResult == ScanResult.Virus, virusName);
 
             WriteObject(fileScanResult);
         }

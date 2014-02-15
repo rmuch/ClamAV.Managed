@@ -44,12 +44,7 @@ namespace ClamAV.Managed.PowerShell
             Engine.ScanDirectory(Path, (path, result, name) =>
             {
                 if (IncludeCleanFiles.IsPresent || result == ScanResult.Virus)
-                    infectedFiles.Add(new FileScanResult
-                    {
-                        Path = path,
-                        Infected = result == ScanResult.Virus,
-                        VirusName = name
-                    });
+                    infectedFiles.Add(new FileScanResult(path, result == ScanResult.Virus, name));
             });
 
             WriteObject(infectedFiles, true);
