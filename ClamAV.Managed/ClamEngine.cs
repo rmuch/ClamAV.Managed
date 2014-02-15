@@ -150,7 +150,13 @@ namespace ClamAV.Managed
         /// <returns>Setting value.</returns>
         internal long EngineGetNum(UnsafeNativeMethods.cl_engine_field setting)
         {
-            return UnsafeNativeMethods.cl_engine_get_num(_engine, setting, IntPtr.Zero);
+            int error = 0;
+            long numValue = UnsafeNativeMethods.cl_engine_get_num(_engine, setting, ref error);
+
+            if (error != UnsafeNativeMethods.CL_SUCCESS)
+                throw new ClamException(error, ErrorString(error));
+
+            return numValue;
         }
 
         /// <summary>
@@ -173,7 +179,13 @@ namespace ClamAV.Managed
         /// <returns>Setting value.</returns>
         internal string EngineGetStr(UnsafeNativeMethods.cl_engine_field setting)
         {
-            return Marshal.PtrToStringAnsi(UnsafeNativeMethods.cl_engine_get_str(_engine, setting, IntPtr.Zero));
+            int error = 0;
+            IntPtr strPtr = UnsafeNativeMethods.cl_engine_get_str(_engine, setting, ref error);
+
+            if (error != UnsafeNativeMethods.CL_SUCCESS)
+                throw new ClamException(error, ErrorString(error));
+
+            return Marshal.PtrToStringAnsi(strPtr);
         }
 
         /// <summary>

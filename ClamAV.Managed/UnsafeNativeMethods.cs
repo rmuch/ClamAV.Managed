@@ -211,13 +211,13 @@ namespace ClamAV.Managed
         internal static extern int cl_engine_set_num(IntPtr engine, cl_engine_field field, long num);
 
         [DllImport(libraryName, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
-        internal static extern long cl_engine_get_num(IntPtr engine, cl_engine_field field, IntPtr err);
+        internal static extern long cl_engine_get_num(IntPtr engine, cl_engine_field field, ref int err);
 
         [DllImport(libraryName, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
         internal static extern int cl_engine_set_str(IntPtr engine, cl_engine_field field, string str);
 
         [DllImport(libraryName, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
-        internal static extern IntPtr cl_engine_get_str(IntPtr engine, cl_engine_field field, IntPtr err);
+        internal static extern IntPtr cl_engine_get_str(IntPtr engine, cl_engine_field field, ref int err);
 
         [DllImport(libraryName, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
         internal static extern IntPtr cl_engine_settings_copy(IntPtr engine);
