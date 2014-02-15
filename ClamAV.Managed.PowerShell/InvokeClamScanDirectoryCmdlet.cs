@@ -17,36 +17,42 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
+using System.Collections.Generic;
 using System.Management.Automation;
 
 namespace ClamAV.Managed.PowerShell
 {
     /// <summary>
-    /// Cmdlet wrapping the ClamEngine.ScanFile() method.
+    /// Cmdlet wrapping the ClamEngine.ScanDirectory() method.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Invoke, "ClamScanFile")]
-    public class ScanFileCmdlet : Cmdlet
+    [Cmdlet(VerbsLifecycle.Invoke, "ClamScanDirectory")]
+    public class InvokeClamScanDirectoryCmdlet : Cmdlet
     {
         [Parameter(Mandatory = true, HelpMessage = "ClamEngine created by New-ClamEngine.")]
         public ClamEngine Engine { get; set; }
 
-        [Parameter(Mandatory = true, Position = 0, HelpMessage = "Path to the file to scan.")]
+        [Parameter(Mandatory = false, HelpMessage = "Whether clean files should be included in the results.")]
+        public SwitchParameter IncludeCleanFiles { get; set; }
+
+        [Parameter(Mandatory = true, Position = 0, HelpMessage = "Path to the directory to scan.")]
         public string Path { get; set; }
 
         protected override void ProcessRecord()
         {
-            string virusName;
+            var infectedFiles = new List<FileScanResult>();
 
-            var scanResult = Engine.ScanFile(Path, out virusName);
-
-            var fileScanResult = new FileScanResult
+            Engine.ScanDirectory(Path, (path, result, name) =>
             {
-                Path = Path,
-                Infected = scanResult == ScanResult.Virus,
-                VirusName = virusName
-            };
+                if (IncludeCleanFiles.IsPresent || result == ScanResult.Virus)
+                    infectedFiles.Add(new FileScanResult
+                    {
+                        Path = path,
+                        Infected = result == ScanResult.Virus,
+                        VirusName = name
+                    });
+            });
 
-            WriteObject(fileScanResult);
+            WriteObject(infectedFiles, true);
         }
     }
 }

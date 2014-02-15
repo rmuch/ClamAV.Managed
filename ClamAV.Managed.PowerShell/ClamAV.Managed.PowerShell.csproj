@@ -44,9 +44,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="NewClamEngineCmdlet.cs" />
-    <Compile Include="LoadDatabaseCmdlet.cs" />
-    <Compile Include="ScanDirectoryCmdlet.cs" />
-    <Compile Include="ScanFileCmdlet.cs" />
+    <Compile Include="ImportClamDatabaseCmdlet.cs" />
+    <Compile Include="InvokeClamScanDirectoryCmdlet.cs" />
+    <Compile Include="InvokeClamScanFileCmdlet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="FileScanResult.cs" />
   </ItemGroup>
