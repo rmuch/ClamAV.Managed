@@ -25,7 +25,7 @@ namespace ClamAV.Managed.PowerShell
     /// <summary>
     /// Cmdlet wrapping the ClamEngine.ScanDirectory() method.
     /// </summary>
-    [Cmdlet("Scan", "Directory")]
+    [Cmdlet(VerbsLifecycle.Invoke, "ClamScanDirectory")]
     public class ScanDirectoryCmdlet : Cmdlet
     {
         [Parameter(Mandatory = true, HelpMessage = "ClamEngine created by New-ClamEngine.")]

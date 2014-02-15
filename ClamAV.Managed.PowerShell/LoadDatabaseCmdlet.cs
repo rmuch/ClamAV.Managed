@@ -27,7 +27,7 @@ namespace ClamAV.Managed.PowerShell
     /// <summary>
     /// Cmdlet wrapping the ClamEngine.LoadDatabase() method.
     /// </summary>
-    [Cmdlet("Load", "Database")]
+    [Cmdlet(VerbsData.Import, "ClamDatabase")]
     public class LoadDatabaseCmdlet : Cmdlet
     {
         [Parameter(Mandatory = true, HelpMessage = "ClamEngine created by New-ClamEngine.")]

@@ -24,7 +24,7 @@ namespace ClamAV.Managed.PowerShell
     /// <summary>
     /// Cmdlet wrapping the ClamEngine.ScanFile() method.
     /// </summary>
-    [Cmdlet("Scan", "File")]
+    [Cmdlet(VerbsLifecycle.Invoke, "ClamScanFile")]
     public class ScanFileCmdlet : Cmdlet
     {
         [Parameter(Mandatory = true, HelpMessage = "ClamEngine created by New-ClamEngine.")]
