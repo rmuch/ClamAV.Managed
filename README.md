@@ -65,14 +65,14 @@ cmdlet.
 2. Create an instance of the ClamAV engine.
    `PS C:\> $eng = New-ClamEngine -WithDatabase C:\ClamAV-Managed\db`
 3. If you didn't provide a `-WithDatabase` parameter to `New-ClamEngine`, use
-   `Load-Database` to load a definitions database.
-   `PS C:\> Load-Database -Engine $eng -Path C:\ClamAV-Managed\db`
+   `Import-ClamDatabase` to load a definitions database.
+   `PS C:\> Import-ClamDatabase -Engine $eng -Path C:\ClamAV-Managed\db`
 4. To scan a file:
-   `PS C:\> Scan-File -Engine $eng -Path C:\File.exe`
+   `PS C:\> Invoke-ClamScanFile -Engine $eng -Path C:\File.exe`
 5. To scan a directory:
-   `PS C:\> Scan-Directory -Engine $eng -Path C:\Directory\`
+   `PS C:\> Invoke-ClamScanDirectory -Engine $eng -Path C:\Directory\`
 
-`Load-Database` will, by default, look for databases in the `db` subdirectory
+`Import-ClamDatabase` will, by default, look for databases in the `db` subdirectory
 of the directory containing the ClamAV.Managed.PowerShell dynamic library.
 However, you may specify a path manually with the `-DatabasePath` parameter.
 
