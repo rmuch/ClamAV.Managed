@@ -47,13 +47,8 @@ namespace ClamAV.Managed
     /// <summary>
     /// This class contains P/Invoke methods and type definitions corresponding to clamav.h in libclamav.
     /// </summary>
-    internal class UnsafeNativeMethods
+    internal static class UnsafeNativeMethods
     {
-        /// <summary>
-        /// Private constructor to prevent generation of default constructor, instantiation.
-        /// </summary>
-        private UnsafeNativeMethods() { }
-
         // Name of the ClamAV library to be located within the library search path.
         internal const string libraryName = "libclamav";
 
