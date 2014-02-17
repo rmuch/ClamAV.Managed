@@ -54,7 +54,7 @@ namespace ClamAV.Managed.Tests
         /// Checks whether libclamav.dll is present and available to the test suite.
         /// </summary>
         /// <returns>A boolean variable indicating whether the library exists.</returns>
-        public static bool ClamAVDynamicLibraryExists()
+        public static bool NativeLibraryExists()
         {
             return File.Exists("libclamav.dll") || File.Exists("libclamav.so") || File.Exists("libclamav");
         }
