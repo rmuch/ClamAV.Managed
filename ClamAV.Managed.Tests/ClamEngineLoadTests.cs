@@ -52,7 +52,7 @@ namespace ClamAV.Managed.Tests
         }
 
         [Test]
-        public void TestLoadDatabasesFromCustomPathIsSuccessful()
+        public void LoadDatabaseFromCustomPathIsSuccessful()
         {
             _clamEngine.LoadDatabase(Path.Combine(TestHelpers.TestFilesDirectory, "db"));
 
