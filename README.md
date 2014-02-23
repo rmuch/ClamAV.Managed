@@ -59,9 +59,10 @@ cmdlet.
 
 1. Use `Import-Module` to load the ClamAV.Managed.PowerShell library. Assume
    we have created a directory C:\ClamAV-Managed\, containing ClamAV.Managed.dll,
-   ClamAV.Managed.PowerShell.dll, libclamav.dll and a subdirectory containing
-   definitions datases called `db`. We're now ready to proceed.
-   ```Import-Module C:\ClamAV-Managed\ClamAV.Managed.PowerShell.dll```
+   ClamAV.Managed.PowerShell.dll, ClamAV.Managed.PowerShell.psd1, libclamav.dll
+   and a subdirectory containing definitions datases called `db`.
+   We're now ready to proceed.
+   ```Import-Module C:\ClamAV-Managed\ClamAV.Managed.PowerShell.psd1```
 2. Create an instance of the ClamAV engine.
    ```PS C:\> $eng = New-ClamEngine -WithDatabase C:\ClamAV-Managed\db```
 3. If you didn't provide a `-WithDatabase` parameter to `New-ClamEngine`, use
