@@ -24,43 +24,145 @@ namespace ClamAV.Managed
     /// </summary>
     public enum ClamError : uint
     {
+        /// <summary>
+        /// File is clean.
+        /// </summary>
         Clean = 0,
+        /// <summary>
+        /// Operation completed successfully.
+        /// </summary>
         Success = 0,
+        /// <summary>
+        /// Virus was detected.
+        /// </summary>
         Virus,
+        /// <summary>
+        /// A null argument was provided.
+        /// </summary>
         NullArgError,
+        /// <summary>
+        /// An incorrect argument was provided.
+        /// </summary>
         ArgError,
+        /// <summary>
+        /// Malformed database.
+        /// </summary>
         MalformedDatabaseError,
+        /// <summary>
+        /// 
+        /// </summary>
         CvdError,
+        /// <summary>
+        /// 
+        /// </summary>
         VerificationError,
+        /// <summary>
+        /// 
+        /// </summary>
         UnpackError,
 
+        /// <summary>
+        /// 
+        /// </summary>
         OpenError,
+        /// <summary>
+        /// 
+        /// </summary>
         CreateError,
+        /// <summary>
+        /// 
+        /// </summary>
         UnlinkError,
+        /// <summary>
+        /// 
+        /// </summary>
         StatError,
+        /// <summary>
+        /// 
+        /// </summary>
         ReadError,
+        /// <summary>
+        /// 
+        /// </summary>
         SeekError,
+        /// <summary>
+        /// 
+        /// </summary>
         WriteError,
+        /// <summary>
+        /// 
+        /// </summary>
         DupError,
+        /// <summary>
+        /// 
+        /// </summary>
         AccessError,
+        /// <summary>
+        /// 
+        /// </summary>
         TempFileError,
+        /// <summary>
+        /// 
+        /// </summary>
         TempDirError,
+        /// <summary>
+        /// 
+        /// </summary>
         MapError,
+        /// <summary>
+        /// 
+        /// </summary>
         MemError,
+        /// <summary>
+        /// 
+        /// </summary>
         TimeoutError,
 
+        /// <summary>
+        /// 
+        /// </summary>
         BreakError,
+        /// <summary>
+        /// 
+        /// </summary>
         MaxRecursionError,
+        /// <summary>
+        /// 
+        /// </summary>
         MaxSizeError,
+        /// <summary>
+        /// 
+        /// </summary>
         MaxFilesError,
+        /// <summary>
+        /// 
+        /// </summary>
         FormatError,
+        /// <summary>
+        /// 
+        /// </summary>
         BytecodeError,
+        /// <summary>
+        /// 
+        /// </summary>
         BytecodeTestFailError,
 
+        /// <summary>
+        /// 
+        /// </summary>
         LockError,
+        /// <summary>
+        /// 
+        /// </summary>
         BusyError,
+        /// <summary>
+        /// 
+        /// </summary>
         StateError,
 
+        /// <summary>
+        /// 
+        /// </summary>
         LastError
     }
 }
