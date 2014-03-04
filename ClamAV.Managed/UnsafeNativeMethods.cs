@@ -161,6 +161,11 @@ namespace ClamAV.Managed
         internal const uint CL_COUNTSIGS_UNOFFICIAL = 0x2;
         internal const uint CL_COUNTSIGS_ALL = (CL_COUNTSIGS_OFFICIAL | CL_COUNTSIGS_UNOFFICIAL);
 
+        /* For the new engine_options bit field in the engine */
+        internal const uint ENGINE_OPTIONS_NONE = 0x0;
+        internal const uint ENGINE_OPTIONS_DISABLE_CACHE = 0x1;
+        internal const uint ENGINE_OPTIONS_FORCE_TO_DISK = 0x2;
+
         internal const uint CL_INIT_DEFAULT = 0x0;
 
         [DllImport(libraryName, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
