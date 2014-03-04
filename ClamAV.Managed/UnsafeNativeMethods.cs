@@ -147,6 +147,8 @@ namespace ClamAV.Managed
         internal const uint CL_SCAN_PARTIAL_MESSAGE = 0x40000;
         internal const uint CL_SCAN_HEURISTIC_PRECEDENCE = 0x80000;
         internal const uint CL_SCAN_BLOCKMACROS = 0x100000;
+        internal const uint CL_SCAN_ALLMATCHES = 0x200000;
+        internal const uint CL_SCAN_SWF = 0x400000;
 
         internal const uint CL_SCAN_INTERNAL_COLLECT_SHA = 0x80000000; /* Enables hash output in sha-collect builds - for internal use only */
 
