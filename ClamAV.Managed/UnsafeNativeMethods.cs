@@ -118,6 +118,9 @@ namespace ClamAV.Managed
         internal const uint CL_DB_BYTECODE = 0x2000;
         internal const uint CL_DB_SIGNED = 0x4000; /* internal */
         internal const uint CL_DB_BYTECODE_UNSIGNED = 0x8000;
+        internal const uint CL_DB_UNSIGNED = 0x10000;
+        internal const uint CL_DB_BYTECODE_STATS = 0x20000;
+        internal const uint CL_DB_ENHANCED = 0x40000;
 
         /* recommended db settings */
         internal const uint CL_DB_STDOPT = (CL_DB_PHISHING | CL_DB_PHISHING_URLS | CL_DB_BYTECODE);
