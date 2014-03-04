@@ -250,6 +250,12 @@ namespace ClamAV.Managed
         [DllImport(libraryName, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
         internal static extern int cl_engine_free(IntPtr engine);
 
+        [DllImport(libraryName, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
+        internal static extern void cli_cache_disable();
+
+        [DllImport(libraryName, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
+        internal static extern int cli_cache_enable(IntPtr engine);
+
         /* CALLBACKS - WARNING: unstable API - WIP */
 
         internal delegate cl_error_t clcb_pre_scan(int fd, IntPtr context);
