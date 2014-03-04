@@ -258,11 +258,17 @@ namespace ClamAV.Managed
 
         /* CALLBACKS - WARNING: unstable API - WIP */
 
-        internal delegate cl_error_t clcb_pre_scan(int fd, IntPtr context);
+        internal delegate cl_error_t clcb_pre_scan(int fd, string type, IntPtr context);
 
         /* PRE-SCAN
+        Called for each NEW file (inner and outer) before the scanning takes place. This is
+        roughly the the same as clcb_before_cache, but it is affected by clean file caching.
+        This means that it won't be called if a clean cached file (inner or outer) is
+        scanned a second time.
+
         Input:
-        fd      = File descriptor which is about to be scanned
+        fd = File descriptor which is about to be scanned
+        type = File type detected via magic - i.e. NOT on the fly - (e.g. "CL_TYPE_MSEXE")
         context = Opaque application provided data
 
         Output:
@@ -273,11 +279,13 @@ namespace ClamAV.Managed
         [DllImport(libraryName, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
         internal static extern void cl_engine_set_clcb_pre_scan(IntPtr engine, clcb_pre_scan callback);
 
-        internal delegate cl_error_t clcb_post_scan(int fd, int result, IntPtr virname, IntPtr context);
+        internal delegate cl_error_t clcb_post_scan(int fd, int result, string virname, IntPtr context);
         /* POST-SCAN
+        Called for each processed file (inner and outer), after the scanning is complete.
+
         Input:
-        fd      = File descriptor which is was scanned
-        result  = The scan result for the file
+        fd = File descriptor which is was scanned
+        result = The scan result for the file
         virname = Virus name if infected
         context = Opaque application provided data
 
@@ -295,15 +303,16 @@ namespace ClamAV.Managed
         Input:
         type = The signature type (e.g. "db", "ndb", "mdb", etc.)
         name = The virus name
+        custom = The signature is official (custom == 0) or custom (custom != 0)
         context = Opaque application provided data
 
         Output:
-        0     = Load the current signature
+        0 = Load the current signature
         Non 0 = Skip the current signature
 
         WARNING: Some signatures (notably ldb, cbc) can be dependent upon other signatures.
-                 Failure to preserve dependency chains will result in database loading failure.
-                 It is the implementor's responsibility to guarantee consistency.
+        Failure to preserve dependency chains will result in database loading failure.
+        It is the implementor's responsibility to guarantee consistency.
         */
         [DllImport(libraryName, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
         internal static extern void cl_engine_set_clcb_sigload(IntPtr engine, clcb_sigload callback, IntPtr context);
@@ -326,16 +335,23 @@ namespace ClamAV.Managed
             CL_MSG_WARN = 64, /* LibClamAV WARNING: */
             CL_MSG_ERROR = 128/* LibClamAV ERROR: */
         };
-        internal delegate void clcb_msg(cl_msg severity, IntPtr fullmsg, IntPtr msg, IntPtr context);
+        internal delegate void clcb_msg(cl_msg severity, string fullmsg, string msg, IntPtr context);
 
         [DllImport(libraryName, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
         internal static extern void cl_set_clcb_msg(clcb_msg callback);
 
         /* LibClamAV hash stats callback */
-        internal delegate void clcb_hash(int fd, ulong size, IntPtr md5, IntPtr virname, IntPtr context);
+        internal delegate void clcb_hash(int fd, ulong size, string md5, string virname, IntPtr context);
 
         [DllImport(libraryName, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
         internal static extern void cl_engine_set_clcb_hash(IntPtr engine, clcb_hash callback);
+
+        /* Archive member metadata callback. Return CL_VIRUS to blacklist, CL_CLEAN to
+         * continue scanning */
+        internal delegate cl_error_t clcb_meta(string container_type, ulong fsize_container, string filename,
+            ulong fsize_real, int is_encrypted, uint filepos_container, IntPtr context);
+        [DllImport(libraryName, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
+        internal static extern void cl_engine_set_clcb_meta(IntPtr engine, clcb_meta callback);
 
         [StructLayout(LayoutKind.Sequential)]
         internal struct cl_stat
