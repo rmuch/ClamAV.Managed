@@ -1,6 +1,6 @@
 ﻿/*
  * ClamAV.Managed - Managed bindings for ClamAV
- * Copyright (C) 2011, 2013 Rupert Muchembled
+ * Copyright (C) 2011, 2013-2014 Rupert Muchembled
  * 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,7 +20,7 @@
 /*
  * libclamav copyright notice from clamav.h
  * 
- * Copyright (C) 2007-2009 Sourcefire, Inc.
+ * Copyright (C) 2007-2013 Sourcefire, Inc.
  *
  * Authors: Tomasz Kojm
  *
@@ -405,5 +405,42 @@ namespace ClamAV.Managed
         /* others */
         [DllImport(libraryName, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
         internal static extern IntPtr cl_strerror(int clerror);
+
+        /* custom data scanning */
+
+        /* handle - the handle passed to cl_fmap_open_handle, its meaning is up to the
+         * callback's implementation
+         * buf, count, offset - read 'count' bytes starting at 'offset' into the buffer 'buf'
+         * Thread safety: it is guaranteed that only one callback is executing for a specific handle at
+         * any time, but there might be multiple callbacks executing for different
+         * handle at the same time.
+        */
+        internal delegate IntPtr clcb_pread(IntPtr handle, IntPtr buf, UIntPtr count, IntPtr offset);
+
+        /* Open a map for scanning custom data accessed by a handle and pread (lseek +
+         * read)-like interface. For example a WIN32 HANDLE.
+         * By default fmap will use aging to discard old data, unless you tell it not
+         * to.
+         * The handle will be passed to the callback each time.
+        */
+        [DllImport(libraryName, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
+        internal static extern IntPtr cl_fmap_open_handle(IntPtr handle, UIntPtr offset, UIntPtr len, clcb_pread pread, int use_aging);
+
+        /* Open a map for scanning custom data, where the data is already in memory,
+         * either in the form of a buffer, a memory mapped file, etc.
+         * Note that the memory [start, start+len) must be the _entire_ file,
+         * you can't give it parts of a file and expect detection to work.
+         */
+        [DllImport(libraryName, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
+        internal static extern IntPtr cl_fmap_open_memory(IntPtr start, UIntPtr len);
+
+        /* Releases resources associated with the map, you should release any resources
+         * you hold only after (handles, maps) calling this function */
+        [DllImport(libraryName, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
+        internal static extern void cl_fmap_close(IntPtr fmap);
+
+        /* Scan custom data */
+        [DllImport(libraryName, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
+        internal static extern int cl_scanmap_callback(IntPtr map, ref string virname, ref ulong scanned, IntPtr engine, uint scanoptions, IntPtr context);
     }
 }
