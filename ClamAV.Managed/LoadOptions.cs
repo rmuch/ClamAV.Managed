@@ -62,6 +62,10 @@ namespace ClamAV.Managed
         /// <summary>
         /// Load unsigned bytecode.
         /// </summary>
-        UnsignedBytecode = 0x8000
+        UnsignedBytecode = 0x8000,
+        /// <summary>
+        /// Collect and print bytecode performance statistics.
+        /// </summary>
+        BytecodeStats = 0x20000
     }
 }
