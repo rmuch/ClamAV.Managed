@@ -150,6 +150,7 @@ namespace ClamAV.Managed
         internal const uint CL_SCAN_ALLMATCHES = 0x200000;
         internal const uint CL_SCAN_SWF = 0x400000;
 
+        internal const uint CL_SCAN_PERFORMANCE_INFO = 0x40000000; /* collect performance timings */
         internal const uint CL_SCAN_INTERNAL_COLLECT_SHA = 0x80000000; /* Enables hash output in sha-collect builds - for internal use only */
 
         /* recommended scan settings */
