@@ -110,6 +110,10 @@ namespace ClamAV.Managed
         /// <summary>
         /// Return all matches in a scan result.
         /// </summary>
-        AllMatches = 0x200000
+        AllMatches = 0x200000,
+        /// <summary>
+        /// Enable scanning of SWF files.
+        /// </summary>
+        SWF = 0x400000
     }
 }
