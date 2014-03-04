@@ -176,24 +176,31 @@ namespace ClamAV.Managed
 
         internal enum cl_engine_field
         {
-            CL_ENGINE_MAX_SCANSIZE,	    /* uint64_t */
-            CL_ENGINE_MAX_FILESIZE,	    /* uint64_t */
-            CL_ENGINE_MAX_RECURSION,	    /* uint32_t	*/
-            CL_ENGINE_MAX_FILES,	    /* uint32_t */
-            CL_ENGINE_MIN_CC_COUNT,	    /* uint32_t */
-            CL_ENGINE_MIN_SSN_COUNT,	    /* uint32_t */
-            CL_ENGINE_PUA_CATEGORIES,	    /* (char *) */
-            CL_ENGINE_DB_OPTIONS,	    /* uint32_t */
-            CL_ENGINE_DB_VERSION,	    /* uint32_t */
-            CL_ENGINE_DB_TIME,		    /* time_t */
-            CL_ENGINE_AC_ONLY,		    /* uint32_t */
-            CL_ENGINE_AC_MINDEPTH,	    /* uint32_t */
-            CL_ENGINE_AC_MAXDEPTH,	    /* uint32_t */
-            CL_ENGINE_TMPDIR,		    /* (char *) */
-            CL_ENGINE_KEEPTMP,		    /* uint32_t */
-            CL_ENGINE_BYTECODE_SECURITY,    /* uint32_t */
-            CL_ENGINE_BYTECODE_TIMEOUT,     /* uint32_t */
-            CL_ENGINE_BYTECODE_MODE         /* uint32_t */
+            CL_ENGINE_MAX_SCANSIZE,	       /* uint64_t */
+            CL_ENGINE_MAX_FILESIZE,	       /* uint64_t */
+            CL_ENGINE_MAX_RECURSION,	   /* uint32_t*/
+            CL_ENGINE_MAX_FILES,	       /* uint32_t */
+            CL_ENGINE_MIN_CC_COUNT,	       /* uint32_t */
+            CL_ENGINE_MIN_SSN_COUNT,	   /* uint32_t */
+            CL_ENGINE_PUA_CATEGORIES,	   /* (char *) */
+            CL_ENGINE_DB_OPTIONS,	       /* uint32_t */
+            CL_ENGINE_DB_VERSION,	       /* uint32_t */
+            CL_ENGINE_DB_TIME,		       /* time_t */
+            CL_ENGINE_AC_ONLY,		       /* uint32_t */
+            CL_ENGINE_AC_MINDEPTH,	       /* uint32_t */
+            CL_ENGINE_AC_MAXDEPTH,	       /* uint32_t */
+            CL_ENGINE_TMPDIR,		       /* (char *) */
+            CL_ENGINE_KEEPTMP,		       /* uint32_t */
+            CL_ENGINE_BYTECODE_SECURITY,   /* uint32_t */
+            CL_ENGINE_BYTECODE_TIMEOUT,    /* uint32_t */
+            CL_ENGINE_BYTECODE_MODE,       /* uint32_t */
+            CL_ENGINE_MAX_EMBEDDEDPE,      /* uint64_t */
+            CL_ENGINE_MAX_HTMLNORMALIZE,   /* uint64_t */
+            CL_ENGINE_MAX_HTMLNOTAGS,      /* uint64_t */
+            CL_ENGINE_MAX_SCRIPTNORMALIZE, /* uint64_t */
+            CL_ENGINE_MAX_ZIPTYPERCG,      /* uint64_t */
+            CL_ENGINE_FORCETODISK,         /* uint32_t */
+            CL_ENGINE_DISABLE_CACHE        /* uint32_t */
         };
 
         internal enum bytecode_security
