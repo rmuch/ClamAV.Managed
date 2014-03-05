@@ -218,5 +218,73 @@ namespace ClamAV.Managed.Tests
 
             Assert.AreEqual(value, _clamEngine.BytecodeMode);
         }
+
+        [Test]
+        public void MaxEmbeddedPEIsReadWritable()
+        {
+            ulong value = 1024;
+
+            _clamEngine.MaxEmbeddedPE = value;
+
+            Assert.AreEqual(value, _clamEngine.MaxEmbeddedPE);
+        }
+
+        [Test]
+        public void MaxHtmlNormalizeIsReadWritable()
+        {
+            ulong value = 1536;
+
+            _clamEngine.MaxHtmlNormalize = value;
+
+            Assert.AreEqual(value, _clamEngine.MaxHtmlNormalize);
+        }
+
+        [Test]
+        public void MaxHtmlNoTagsIsReadWritable()
+        {
+            ulong value = 2048;
+
+            _clamEngine.MaxHtmlNoTags = value;
+
+            Assert.AreEqual(value, _clamEngine.MaxHtmlNoTags);
+        }
+
+        [Test]
+        public void MaxScriptNormalizeIsReadWritable()
+        {
+            ulong value = 4096;
+
+            _clamEngine.MaxScriptNormalize = value;
+
+            Assert.AreEqual(value, _clamEngine.MaxScriptNormalize);
+        }
+
+        [Test]
+        public void MaxZipTypeRcgIsReadWritable()
+        {
+            ulong value = 8192;
+
+            _clamEngine.MaxZipTypeRcg = value;
+
+            Assert.AreEqual(value, _clamEngine.MaxZipTypeRcg);
+        }
+
+        public void ForceToDiskIsReadWritable()
+        {
+            var value = true;
+
+            _clamEngine.ForceToDisk = value;
+
+            Assert.AreEqual(value, _clamEngine.ForceToDisk);
+        }
+
+        public void DisableCacheIsReadWritable()
+        {
+            var value = true;
+
+            _clamEngine.DisableCache = value;
+
+            Assert.AreEqual(value, _clamEngine.DisableCache);
+        }
     }
 }
