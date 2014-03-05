@@ -1,6 +1,17 @@
 ClamAV.Managed Change Log
 =========================
 
+0.2.0.0 - Current
+-----------------
+
+ClamAV.Managed 0.2.0.0 makes the following changes:
+
+ * Preliminary support for PowerShell, implementing a set of cmdlets around the
+   ClamAV.Managed API.
+ * Upgraded from ClamAV 0.97 to 0.98, adding support for new settings added in
+   the latest version.
+ * Improved error handling.
+
 0.1.0.0 - 10 January 2014
 -------------------------
 
