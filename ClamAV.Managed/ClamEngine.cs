@@ -471,6 +471,114 @@ namespace ClamAV.Managed
             }
         }
 
+        /// <summary>
+        /// Maximum size file to check for embedded PE.
+        /// </summary>
+        public ulong MaxEmbeddedPE
+        {
+            get
+            {
+                return (ulong)EngineGetNum(UnsafeNativeMethods.cl_engine_field.CL_ENGINE_MAX_EMBEDDEDPE);
+            }
+            set
+            {
+                EngineSetNum(UnsafeNativeMethods.cl_engine_field.CL_ENGINE_MAX_EMBEDDEDPE, (long)value);
+            }
+        }
+
+        /// <summary>
+        /// Maximum size of HTML file to normalize.
+        /// </summary>
+        public ulong MaxHtmlNormalize
+        {
+            get
+            {
+                return (ulong)EngineGetNum(UnsafeNativeMethods.cl_engine_field.CL_ENGINE_MAX_HTMLNORMALIZE);
+            }
+            set
+            {
+                EngineSetNum(UnsafeNativeMethods.cl_engine_field.CL_ENGINE_MAX_HTMLNORMALIZE, (long)value);
+            }
+        }
+
+        /// <summary>
+        /// Maximum size of normalized HTML file to scan.
+        /// </summary>
+        public ulong MaxHtmlNoTags
+        {
+            get
+            {
+                return (ulong)EngineGetNum(UnsafeNativeMethods.cl_engine_field.CL_ENGINE_MAX_HTMLNOTAGS);
+            }
+            set
+            {
+                EngineSetNum(UnsafeNativeMethods.cl_engine_field.CL_ENGINE_MAX_HTMLNOTAGS, (long)value);
+            }
+        }
+
+        /// <summary>
+        /// Maximum size of script file to normalize.
+        /// </summary>
+        public ulong MaxScriptNormalize
+        {
+            get
+            {
+                return (ulong)EngineGetNum(UnsafeNativeMethods.cl_engine_field.CL_ENGINE_MAX_SCRIPTNORMALIZE);
+            }
+            set
+            {
+                EngineSetNum(UnsafeNativeMethods.cl_engine_field.CL_ENGINE_MAX_SCRIPTNORMALIZE, (long)value);
+            }
+        }
+
+        /// <summary>
+        /// Maximum size zip to type reanalyze.
+        /// </summary>
+        public ulong MaxZipTypeRcg
+        {
+            get
+            {
+                return (ulong)EngineGetNum(UnsafeNativeMethods.cl_engine_field.CL_ENGINE_MAX_ZIPTYPERCG);
+            }
+            set
+            {
+                EngineSetNum(UnsafeNativeMethods.cl_engine_field.CL_ENGINE_MAX_ZIPTYPERCG, (long)value);
+            }
+        }
+
+        /// <summary>
+        /// This option causes memory or nested map scans to dump the content to disk.
+        /// </summary>
+        public bool ForceToDisk
+        {
+            get
+            {
+                return EngineGetNum(UnsafeNativeMethods.cl_engine_field.CL_ENGINE_FORCETODISK) != 0;
+            }
+            set
+            {
+                EngineSetNum(UnsafeNativeMethods.cl_engine_field.CL_ENGINE_FORCETODISK, value ? 1 : 0);
+            }
+        }
+
+        /// <summary>
+        /// This option allows you to disable the caching feature of the engine. By
+        /// default, the engine will store an MD5 in a cache of any files that are
+        /// not flagged as virus or that hit limits checks. Disabling the cache will
+        /// have a negative performance impact on large scans.
+        /// </summary>
+        public bool DisableCache
+        {
+            get
+            {
+                return EngineGetNum(UnsafeNativeMethods.cl_engine_field.CL_ENGINE_DISABLE_CACHE) != 0;
+            }
+            set
+            {
+                EngineSetNum(UnsafeNativeMethods.cl_engine_field.CL_ENGINE_DISABLE_CACHE, value ? 1 : 0);
+            }
+        }
+
         #endregion
 
         #region Constructors and Destructors
