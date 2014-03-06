@@ -429,7 +429,7 @@ namespace ClamAV.Managed
 
         /* count signatures */
         [DllImport(libraryName, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
-        internal static extern int cl_countsigs(IntPtr path, uint countoptions, IntPtr sigs);
+        internal static extern int cl_countsigs(string path, uint countoptions, ref int sigs);
 
         /* enable debug messages */
         [DllImport(libraryName, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
