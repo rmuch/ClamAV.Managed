@@ -385,11 +385,6 @@ namespace ClamAV.Managed
 
         [DllImport(libraryName, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
         internal static extern int cl_scanfile([MarshalAs(UnmanagedType.LPStr)]string filename, ref IntPtr virname, ref ulong scanned, IntPtr engine, uint scanoptions);
-        // internal static extern int cl_scanfile([MarshalAs(UnmanagedType.LPStr)]string filename, [MarshalAs(UnmanagedType.LPStr)] ref string virname, ref ulong scanned, IntPtr engine, uint scanoptions);
-
-        //[DllImport(libraryName, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi, EntryPoint= "cl_scanfile")]
-        //internal static extern int cl_scanfile_IntPtr([MarshalAs(UnmanagedType.LPStr)]string filename,  ref IntPtr virname, ref ulong scanned, IntPtr engine, uint scanoptions);
-
 
         [DllImport(libraryName, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
         internal static extern int cl_scanfile_callback(string filename, ref string virname, ref ulong scanned, IntPtr engine, uint scanoptions, IntPtr context);
