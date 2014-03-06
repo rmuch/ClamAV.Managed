@@ -45,7 +45,7 @@ namespace ClamAV.Managed.Samples.Gui
             // Instantiate ClamAV engine.
             _clamAV = new ClamEngine();
 
-            logTextBox.AppendText("ClamAV Version: " + _clamAV.Version + "\r\n");
+            logTextBox.AppendText("ClamAV Version: " + ClamEngine.Version + "\r\n");
 
             logTextBox.AppendText("Loading signatures from default location...\r\n");
 

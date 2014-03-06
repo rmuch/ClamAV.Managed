@@ -51,7 +51,7 @@ namespace ClamAV.Managed.Tests
         [Test]
         public void VersionPropertyIsNotNullOrEmpty()
         {
-            var version = _clamEngine.Version;
+            var version = ClamEngine.Version;
 
             Assert.IsFalse(string.IsNullOrEmpty(version));
         }

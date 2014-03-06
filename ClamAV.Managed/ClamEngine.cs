@@ -104,12 +104,12 @@ namespace ClamAV.Managed
         /// <summary>
         /// Cached ClamAV version string.
         /// </summary>
-        private string _clamVersion;
+        private static string _clamVersion;
 
         /// <summary>
         /// ClamAV engine version string.
         /// </summary>
-        public string Version
+        public static string Version
         {
             get
             {
