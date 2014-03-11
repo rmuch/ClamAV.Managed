@@ -395,7 +395,6 @@ namespace ClamAV.Managed
 
         [DllImport(libraryName, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
         internal static extern IntPtr cl_retdbdir();
-        //internal static extern string cl_retdbdir();
 
         /* engine handling */
 
