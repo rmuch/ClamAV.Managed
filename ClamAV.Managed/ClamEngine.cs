@@ -34,15 +34,15 @@ namespace ClamAV.Managed
         /// <summary>
         /// Whether the ClamAV library has been globally initialized.
         /// </summary>
-        private static bool initialized = false;
+        private static bool _initialized = false;
 
         /// <summary>
         /// Global initialization method to load the ClamAV library into the process.
         /// This method should be called once during the lifetime of a host process.
         /// </summary>
-        private static void initialize()
+        private static void Initialize()
         {
-            if (!initialized)
+            if (!_initialized)
             {
                 int result = UnsafeNativeMethods.cl_init(UnsafeNativeMethods.CL_INIT_DEFAULT);
 
@@ -50,7 +50,7 @@ namespace ClamAV.Managed
                     throw new ClamException(result, ErrorString(result));
             }
 
-            initialized = true;
+            _initialized = true;
         }
 
         #endregion
@@ -599,7 +599,7 @@ namespace ClamAV.Managed
                 UnsafeNativeMethods.cl_debug();
 
             // Initialize ClamAV library.
-            initialize();
+            Initialize();
 
             // Create a new instance of the ClamAV engine.
             _engine = UnsafeNativeMethods.cl_engine_new();
