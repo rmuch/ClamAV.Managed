@@ -10,6 +10,7 @@ ClamAV.Managed 0.2.0.0 makes the following changes:
    ClamAV.Managed API.
  * Upgraded from ClamAV 0.97 to 0.98, adding support for new settings added in
    the latest version.
+ * Functions which do not require an engine handle are now callable statically.
  * Improved error handling.
 
 0.1.0.0 - 10 January 2014
