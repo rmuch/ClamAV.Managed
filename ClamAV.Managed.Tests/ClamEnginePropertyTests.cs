@@ -264,6 +264,7 @@ namespace ClamAV.Managed.Tests
             Assert.AreEqual(value, _clamEngine.MaxZipTypeRcg);
         }
 
+#if PRERELEASE
         [Test]
         public void ForceToDiskIsReadWritable()
         {
@@ -283,5 +284,6 @@ namespace ClamAV.Managed.Tests
 
             Assert.AreEqual(value, _clamEngine.DisableCache);
         }
+#endif
     }
 }

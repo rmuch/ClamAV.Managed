@@ -546,6 +546,7 @@ namespace ClamAV.Managed
             }
         }
 
+#if PRERELEASE
         /// <summary>
         /// This option causes memory or nested map scans to dump the content to disk.
         /// </summary>
@@ -578,6 +579,7 @@ namespace ClamAV.Managed
                 EngineSetNum(UnsafeNativeMethods.cl_engine_field.CL_ENGINE_DISABLE_CACHE, value ? 1 : 0);
             }
         }
+#endif
 
         #endregion
 
