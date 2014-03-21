@@ -23,7 +23,7 @@ Author = 'Rupert Muchembled'
 Copyright = '(c) 2014 Rupert Muchembled. This program is licensed under the terms of the GNU GPL v2.'
 
 # Description of the functionality provided by this module
-# Description = ''
+Description = 'Provides a PowerShell interface to libclamav.'
 
 # Minimum version of the Windows PowerShell engine required by this module
 # PowerShellVersion = ''
