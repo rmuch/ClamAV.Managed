@@ -30,12 +30,21 @@ namespace ClamAV.Managed.PowerShell
     [Cmdlet(VerbsData.Import, "ClamDatabase")]
     public class ImportClamDatabaseCmdlet : Cmdlet
     {
+        /// <summary>
+        /// Parameter accepting a ClamEngine instance.
+        /// </summary>
         [Parameter(Mandatory = true, HelpMessage = "ClamEngine created by New-ClamEngine.")]
         public ClamEngine Engine { get; set; }
 
+        /// <summary>
+        /// Parameter accepting a path to a database to load.
+        /// </summary>
         [Parameter(Mandatory = false, Position = 0, HelpMessage = "Path to the database to load.")]
         public string DatabasePath { get; set; }
 
+        /// <summary>
+        /// Loads a ClamAV database.
+        /// </summary>
         protected override void ProcessRecord()
         {
             string expectedDbPath = Path.Combine(Assembly.GetExecutingAssembly().Location, "db");

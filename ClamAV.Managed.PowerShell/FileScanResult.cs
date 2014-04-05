@@ -24,6 +24,12 @@ namespace ClamAV.Managed.PowerShell
     /// </summary>
     public class FileScanResult
     {
+        /// <summary>
+        /// Creates a new FileScanResult with the provided values.
+        /// </summary>
+        /// <param name="path">Path to the file that has been scanned.</param>
+        /// <param name="infected">Whether a virus has been detected.</param>
+        /// <param name="virusName">If a virus has been detected, VirusName will contain the name.</param>
         internal FileScanResult(string path, bool infected, string virusName)
         {
             Path = path;

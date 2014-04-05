@@ -28,12 +28,21 @@ namespace ClamAV.Managed.PowerShell
     [Cmdlet(VerbsCommon.New, "ClamEngine")]
     public class NewClamEngineCmdlet : Cmdlet
     {
+        /// <summary>
+        /// Optional parameter indicating whether libclamav should enter into debug mode.
+        /// </summary>
         [Parameter(Mandatory = false, HelpMessage = "Initialize libclamav in debug mode.")]
         public SwitchParameter DebugMode { get; set; }
 
+        /// <summary>
+        /// Optional parameter accepting a path to a database to load.
+        /// </summary>
         [Parameter(Mandatory = false, HelpMessage = "Path to the database to load.")]
         public string WithDatabase { get; set; }
 
+        /// <summary>
+        /// Creates a new ClamAV engine instance.
+        /// </summary>
         protected override void ProcessRecord()
         {
             var clamEngine = new ClamEngine(DebugMode.IsPresent);

@@ -27,12 +27,21 @@ namespace ClamAV.Managed.PowerShell
     [Cmdlet(VerbsLifecycle.Invoke, "ClamScanFile")]
     public class InvokeClamScanFileCmdlet : Cmdlet
     {
+        /// <summary>
+        /// Parameter accepting a ClamEngine instance.
+        /// </summary>
         [Parameter(Mandatory = true, HelpMessage = "ClamEngine created by New-ClamEngine.")]
         public ClamEngine Engine { get; set; }
 
+        /// <summary>
+        /// Parameter accepting the path to the file to scan.
+        /// </summary>
         [Parameter(Mandatory = true, Position = 0, HelpMessage = "Path to the file to scan.")]
         public string Path { get; set; }
 
+        /// <summary>
+        /// Scans a file for viruses.
+        /// </summary>
         protected override void ProcessRecord()
         {
             string virusName;
