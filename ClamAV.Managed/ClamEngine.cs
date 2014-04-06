@@ -636,7 +636,7 @@ namespace ClamAV.Managed
         /// <param name="b">Whether the dispose method has been called from the finalizer.</param>
         protected virtual void Dispose(bool b)
         {
-            if (_disposed)
+            if (!_disposed)
             {
                 // Free ClamAV engine instance.
                 int result = UnsafeNativeMethods.cl_engine_free(_engine);
