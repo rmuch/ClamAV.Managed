@@ -12,6 +12,7 @@ ClamAV.Managed 0.2.0.0 makes the following changes:
    the latest version.
  * Functions which do not require an engine handle are now callable statically.
  * Improved error handling.
+ * Asynchronous API using async/await.
 
 0.1.0.0 - 10 January 2014
 -------------------------

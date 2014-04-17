@@ -52,6 +52,14 @@ http://www.clamav.net/mirrors.html. Databases will be named main.cvd, daily.cvd,
 bytecode.cvd, safebrowsing.cvd in the root directory of the mirror. More
 information about obtaining ClamAV databases can be found on the ClamAV website.
 
+### ClamAV.Managed.Async Task-based Asynchronous Scanning
+
+ClamAV.Managed provides a task-based asynchronous API using the new async/await
+feature for .NET 4.5.1 in the ClamAV.Managed.Async project.
+
+ClamAV.Managed.Async is implemented as extension methods and can be used by adding
+a reference to the library from your project.
+
 ### ClamAV.Managed.PowerShell Cmdlets
 
 To use the cmdlets provided by ClamAV.Managed.PowerShell, use the `New-ClamEngine`
