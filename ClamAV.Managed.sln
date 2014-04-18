@@ -27,6 +27,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClamAV.Managed.PowerShell",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClamAV.Managed.Async", "ClamAV.Managed.Async\ClamAV.Managed.Async.csproj", "{C57118AF-07C0-4064-B5FF-69A7DE79E1E2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClamAV.Managed.Samples.AsyncGui", "ClamAV.Managed.Samples.AsyncGui\ClamAV.Managed.Samples.AsyncGui.csproj", "{E05DB2B7-0795-4E1B-BDAE-8FCF8426B755}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,6 +55,10 @@ Global
 		{C57118AF-07C0-4064-B5FF-69A7DE79E1E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C57118AF-07C0-4064-B5FF-69A7DE79E1E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C57118AF-07C0-4064-B5FF-69A7DE79E1E2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E05DB2B7-0795-4E1B-BDAE-8FCF8426B755}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E05DB2B7-0795-4E1B-BDAE-8FCF8426B755}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E05DB2B7-0795-4E1B-BDAE-8FCF8426B755}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E05DB2B7-0795-4E1B-BDAE-8FCF8426B755}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
