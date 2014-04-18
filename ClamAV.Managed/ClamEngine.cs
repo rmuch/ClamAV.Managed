@@ -641,13 +641,6 @@ namespace ClamAV.Managed
                 // Free ClamAV engine instance.
                 int result = UnsafeNativeMethods.cl_engine_free(_engine);
 
-                if (result != UnsafeNativeMethods.CL_SUCCESS)
-                {
-                    // XXX: FxCop doesn't like throwing an exception on Dispose - 
-                    //      this should be removed or only thrown on very serious errors.
-                    throw new ClamException(result, ErrorString(result));
-                }
-
                 _disposed = true;
             }
         }
