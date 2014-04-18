@@ -31,6 +31,50 @@ namespace ClamAV.Managed.Async
     public static class ClamEngineExtensions
     {
         /// <summary>
+        /// Asynchronously load databases from the default hardcoded path using standard options.
+        /// </summary>
+        /// <param name="engine">ClamAV engine instance.</param>
+        /// <returns>The task object representing the asynchronous operation.</returns>
+        public static async Task LoadDatabaseAsync(this ClamEngine engine)
+        {
+            await Task.Factory.StartNew(engine.LoadDatabase);
+        }
+
+        /// <summary>
+        /// Asynchronously load databases from the default hardcoded path using custom options.
+        /// </summary>
+        /// <param name="engine">ClamAV engine instance.</param>
+        /// <param name="options">Options with which to load the database.</param>
+        /// <returns>The task object representing the asynchronous operation.</returns>
+        public static async Task LoadDatabaseAsync(this ClamEngine engine, LoadOptions options)
+        {
+            await Task.Factory.StartNew(() => engine.LoadDatabase(options));
+        }
+
+        /// <summary>
+        /// Asynchronously load databases from a custom path using standard options.
+        /// </summary>
+        /// <param name="engine">ClamAV engine instance.</param>
+        /// <param name="path">Path to the database file or a directory containing database files.</param>
+        /// <returns>The task object representing the asynchronous operation.</returns>
+        public static async Task LoadDatabaseAsync(this ClamEngine engine, string path)
+        {
+            await Task.Factory.StartNew(() => engine.LoadDatabase(path));
+        }
+
+        /// <summary>
+        /// Asynchronously loads a database file or directory into the engine.
+        /// </summary>
+        /// <param name="engine">ClamAV engine instance.</param>
+        /// <param name="path">Path to the database file or a directory containing database files.</param>
+        /// <param name="options">Options with which to load the database.</param>
+        /// <returns>The task object representing the asynchronous operation.</returns>
+        public static async Task LoadDatabaseAsync(this ClamEngine engine, string path, LoadOptions options)
+        {
+            await Task.Factory.StartNew(() => engine.LoadDatabase(path, options));
+        }
+
+        /// <summary>
         /// Asynchronously scans a file for viruses with the default scan options.
         /// </summary>
         /// <param name="engine">ClamAV engine instance.</param>
