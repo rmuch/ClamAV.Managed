@@ -72,8 +72,8 @@ namespace ClamAV.Managed
         /// <summary>
         /// Unmarshals a pointer to an ANSI string value.
         /// </summary>
-        /// <param name="ptr"></param>
-        /// <returns></returns>
+        /// <param name="ptr">Pointer to a string to be unmarshalled.</param>
+        /// <returns>An unmarshalled string.</returns>
         protected static string UnmarshalString(IntPtr ptr)
         {
             return Marshal.PtrToStringAnsi(ptr);
