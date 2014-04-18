@@ -27,7 +27,7 @@ namespace ClamAV.Managed.Tests
         [Test]
         public void LastErrorMatchesErrorCount()
         {
-            Assert.That((int) ClamError.LastError, Is.EqualTo(32));
+            Assert.That((int)ClamError.LastError, Is.EqualTo(32));
         }
     }
 }
