@@ -137,16 +137,15 @@ namespace ClamAV.Managed.Samples.AsyncGui
 
             var results = await _clamEngine.ScanDirectoryAsync(scanPath);
 
-            var infected = results.Where(r => r.Infected);
+            var resultList = results.ToList();
+            var infectedList = resultList.Where(r => r.Infected).ToList();
 
             Log(scanPath + " scanned");
-            Log(string.Format("{0} file(s) scanned, {1} infected", results.Count(), infected.Count()));
-            infected.All(
-                result =>
-                {
-                    Log(string.Format("{0} infected with {1}", result.Path, result.VirusName));
-                    return true;
-                });
+            Log(string.Format("{0} file(s) scanned, {1} infected", resultList.Count, infectedList.Count));
+
+            foreach (var infected in infectedList)
+                Log(string.Format("{0} infected with {1}", infected.Path, infected.VirusName));
+
             Log("==========");
 
             EnableInteraction();
