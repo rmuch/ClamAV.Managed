@@ -4,15 +4,19 @@ ClamAV.Managed Change Log
 0.2.0.0 - Current
 -----------------
 
-ClamAV.Managed 0.2.0.0 makes the following changes:
+ClamAV.Managed 0.2.0.0 is the second versioned release of the project, adding
+several new features and many small fixes and improvements, including:
 
  * Preliminary support for PowerShell, implementing a set of cmdlets around the
    ClamAV.Managed API.
- * Upgraded from ClamAV 0.97 to 0.98, adding support for new settings added in
-   the latest version.
+ * PowerShell helper script for downloading definition databases from a
+   selected HTTP mirror.
+ * Upgraded from ClamAV 0.97 to 0.98, adding support for settings and functions
+   new in the latest version.
  * Functions which do not require an engine handle are now callable statically.
- * Improved error handling.
+ * Improved error condition handling.
  * Asynchronous API using async/await.
+ * A GUI sample project using WPF and the new async/await API.
 
 0.1.0.0 - 10 January 2014
 -------------------------
