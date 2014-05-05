@@ -92,16 +92,24 @@ namespace ClamAV.Managed.Samples.AsyncGui
             ScanButton.IsEnabled = false;
         }
 
-        private async void ScanButton_Click(object sender, RoutedEventArgs e)
+        private void ScanButton_Click(object sender, RoutedEventArgs e)
         {
             var scanPath = PathBox.Text;
 
-            // Determine file or directory.
-            var fileAttributes = File.GetAttributes(PathBox.Text);
-            if ((fileAttributes & FileAttributes.Directory) == FileAttributes.Directory)
-                ScanDirectory(scanPath);
-            else
-                ScanFile(scanPath);
+            try
+            {
+                // Determine file or directory.
+                var fileAttributes = File.GetAttributes(PathBox.Text);
+                if ((fileAttributes & FileAttributes.Directory) == FileAttributes.Directory)
+                    ScanDirectory(scanPath);
+                else
+                    ScanFile(scanPath);
+            }
+            catch (Exception ex)
+            {
+                Log("Failed to scan file or directory:");
+                Log(ex.ToString());
+            }
         }
 
         private async void ScanFile(string scanPath)
