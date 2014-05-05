@@ -811,6 +811,9 @@ namespace ClamAV.Managed
             if (fileScannedCallback == null)
                 throw new ArgumentNullException("fileScannedCallback");
 
+            if (maxDepth < 0)
+                throw new ArgumentException("maxDepth must be 0 or greater.");
+
             var pathStack = new Stack<Tuple<string /* path */, int /* depth */>>();
 
             // Push the starting directory onto the stack.
