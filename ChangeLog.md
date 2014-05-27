@@ -1,6 +1,11 @@
 ClamAV.Managed Change Log
 =========================
 
+0.3.0.0 - Current
+-----------------
+
+ClamAV.Managed 0.3.0.0 is the third release of the project.
+
 0.2.0.0 - 5 May 2014
 --------------------
 
