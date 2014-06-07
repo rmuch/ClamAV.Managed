@@ -62,7 +62,7 @@ namespace ClamAV.Managed
         /// </summary>
         /// <param name="error">ClamAV error code.</param>
         /// <returns>Error description.</returns>
-        protected static string ErrorString(int error)
+        internal static string ErrorString(int error)
         {
             IntPtr result = UnsafeNativeMethods.cl_strerror(error);
 
@@ -74,7 +74,7 @@ namespace ClamAV.Managed
         /// </summary>
         /// <param name="ptr">Pointer to a string to be unmarshalled.</param>
         /// <returns>An unmarshalled string.</returns>
-        protected static string UnmarshalString(IntPtr ptr)
+        private static string UnmarshalString(IntPtr ptr)
         {
             return Marshal.PtrToStringAnsi(ptr);
         }

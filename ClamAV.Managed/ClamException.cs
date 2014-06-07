@@ -27,12 +27,13 @@ namespace ClamAV.Managed
     [Serializable]
     public class ClamException : Exception
     {
-        private int _errorCode;
+        private readonly int _errorCode;
+        private readonly string _message;
 
         /// <summary>
-        /// Integer error code.
+        /// ClamAV integer error code.
         /// </summary>
-        public int ErrorCode { get { return _errorCode; } }
+        protected int ErrorCode { get { return _errorCode; } }
 
         /// <summary>
         /// ClamAV error status.
@@ -40,32 +41,44 @@ namespace ClamAV.Managed
         public ClamError ClamError { get { return (ClamError)_errorCode; } }
 
         /// <summary>
-        /// Initializes a new instance of the ClamException class.
+        /// ClamAV error message.
         /// </summary>
-        public ClamException() { }
+        public override string Message { get { return _message; } }
 
         /// <summary>
-        /// Initializes a new instance of the ClamException class with a specified error message.
+        /// Initializes a new instance of the ClamException class with a specified error code, using libclamav to
+        /// obtain a string representation of the error message.
         /// </summary>
-        /// <param name="message">The message that describes the error. </param>
-        public ClamException(string message) : base(message) { }
+        /// <param name="errorCode">The ClamAV error code for this exception.</param>
+        internal ClamException(int errorCode)
+            : this(errorCode, ClamEngine.ErrorString(errorCode)) { }
 
         /// <summary>
-        /// Initializes a new instance of the ClamException class with a specified error message and a reference to the inner exception that is the cause of this exception.
+        /// Initializes a new instance of the ClamException class with a specified error, using libclamav to obtain
+        /// a string representation of the error message.
         /// </summary>
-        /// <param name="message">The error message that explains the reason for the exception.</param>
-        /// <param name="inner">The exception that is the cause of the current exception, or a null reference if no inner exception is specified. </param>
-        public ClamException(string message, Exception inner) : base(message, inner) { }
+        /// <param name="error">The ClamAV error for this exception.</param>
+        internal ClamException(ClamError error)
+            : this((int)error) { }
 
         /// <summary>
         /// Initializes a new instance of the ClamException class with a specified error code and message.
         /// </summary>
         /// <param name="errorCode">The ClamAV error code for this exception.</param>
         /// <param name="message">The ClamAV error message for this exception.</param>
-        public ClamException(int errorCode, string message)
-            : base(message)
+        internal ClamException(int errorCode, string message)
         {
+            if (errorCode == 0)
+                throw new ArgumentException("error code indicates success", "errorCode");
+
+            if (errorCode < 1 || errorCode >= (int)ClamError.LastError)
+                throw new ArgumentException("error code is an unexpected value", "errorCode");
+
+            if (string.IsNullOrWhiteSpace(message))
+                throw new ArgumentNullException("message");
+
             _errorCode = errorCode;
+            _message = message;
         }
 
         /// <summary>
