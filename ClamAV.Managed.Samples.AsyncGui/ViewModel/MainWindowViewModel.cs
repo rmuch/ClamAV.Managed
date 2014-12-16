@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using System.Windows.Markup;
-using ClamAV.Managed;
 using ClamAV.Managed.Async;
 using ClamAV.Managed.Samples.AsyncGui.Helpers;
 
