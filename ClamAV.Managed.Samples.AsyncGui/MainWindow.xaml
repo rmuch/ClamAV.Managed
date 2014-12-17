@@ -24,7 +24,8 @@
                  TextWrapping="Wrap"
                  IsReadOnly="True"
                  VerticalScrollBarVisibility="Visible"
-                 Text="{Binding Path=Log}"/>
+                 Text="{Binding Path=Log}"
+                 FontFamily="Consolas"/>
         <Label Content="Log:"
                HorizontalAlignment="Left"
                Margin="10,56,0,0"
