@@ -42,8 +42,11 @@ namespace ClamAV.Managed.Samples.AsyncGui.ViewModel
             get { return _scanPath; }
             set
             {
-                if (value == _scanPath) return;
+                if (value == _scanPath)
+                    return;
+
                 _scanPath = value;
+
                 OnPropertyChanged();
             }
         }
@@ -53,8 +56,11 @@ namespace ClamAV.Managed.Samples.AsyncGui.ViewModel
             get { return _logView; }
             set
             {
-                if (value == _logView) return;
+                if (value == _logView)
+                    return;
+
                 _logView = value;
+
                 OnPropertyChanged();
             }
         }
@@ -64,8 +70,11 @@ namespace ClamAV.Managed.Samples.AsyncGui.ViewModel
             get { return _busy; }
             set
             {
-                if (value.Equals(_busy)) return;
+                if (value.Equals(_busy))
+                    return;
+
                 _busy = value;
+
                 OnPropertyChanged();
             }
         }
@@ -75,7 +84,9 @@ namespace ClamAV.Managed.Samples.AsyncGui.ViewModel
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChangedEventHandler handler = PropertyChanged;
-            if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
+
+            if (handler != null)
+                handler(this, new PropertyChangedEventArgs(propertyName));
         }
 
         public ICommand ScanCommand { get; set; }
@@ -146,9 +157,13 @@ namespace ClamAV.Managed.Samples.AsyncGui.ViewModel
                 // Determine file or directory.
                 var fileAttributes = File.GetAttributes(ScanPathBound);
                 if ((fileAttributes & FileAttributes.Directory) == FileAttributes.Directory)
+                {
                     await ScanDirectory(scanPath);
+                }
                 else
+                {
                     await ScanFile(scanPath);
+                }
             }
             catch (Exception ex)
             {
@@ -173,9 +188,13 @@ namespace ClamAV.Managed.Samples.AsyncGui.ViewModel
             var result = await _clamEngine.ScanFileAsync(scanPath);
 
             if (result.Infected)
+            {
                 WriteLogLine("File infected with " + result.VirusName);
+            }
             else
+            {
                 WriteLogLine("File clean");
+            }
 
             WriteLogLine("==========");
         }
@@ -193,7 +212,9 @@ namespace ClamAV.Managed.Samples.AsyncGui.ViewModel
             WriteLogLine(string.Format("{0} file(s) scanned, {1} infected", resultList.Count, infectedList.Count));
 
             foreach (var infected in infectedList)
+            {
                 WriteLogLine(string.Format("{0} infected with {1}", infected.Path, infected.VirusName));
+            }
 
             WriteLogLine("==========");
         }
@@ -201,7 +222,9 @@ namespace ClamAV.Managed.Samples.AsyncGui.ViewModel
         public void Dispose()
         {
             if (_clamEngine != null)
+            {
                 _clamEngine.Dispose();
+            }
         }
     }
 }
