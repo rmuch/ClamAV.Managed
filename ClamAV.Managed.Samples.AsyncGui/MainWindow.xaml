@@ -10,7 +10,7 @@
                  Margin="10,31,90,0"
                  TextWrapping="Wrap"
                  VerticalAlignment="Top"
-                 Text="{Binding Path=ScanPathBound, UpdateSourceTrigger=PropertyChanged}"/>
+                 Text="{Binding Path=ScanPath, UpdateSourceTrigger=PropertyChanged}"/>
         <Button x:Name="ScanButton"
                 Content="Scan"
                 Margin="0,31,10,0"
@@ -24,7 +24,7 @@
                  TextWrapping="Wrap"
                  IsReadOnly="True"
                  VerticalScrollBarVisibility="Visible"
-                 Text="{Binding Path=LogViewBound}"/>
+                 Text="{Binding Path=Log}"/>
         <Label Content="Log:"
                HorizontalAlignment="Left"
                Margin="10,56,0,0"

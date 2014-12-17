@@ -37,7 +37,7 @@ namespace ClamAV.Managed.Samples.AsyncGui.ViewModel
         private string _logView;
         private bool _busy;
 
-        public string ScanPathBound
+        public string ScanPath
         {
             get { return _scanPath; }
             set
@@ -51,7 +51,7 @@ namespace ClamAV.Managed.Samples.AsyncGui.ViewModel
             }
         }
 
-        public string LogViewBound
+        public string Log
         {
             get { return _logView; }
             set
@@ -118,7 +118,7 @@ namespace ClamAV.Managed.Samples.AsyncGui.ViewModel
 
         private void WriteLogLine(string message)
         {
-            LogViewBound += message + "\r\n";
+            Log += message + "\r\n";
         }
 
         private async void OnLoad(object obj)
@@ -148,14 +148,14 @@ namespace ClamAV.Managed.Samples.AsyncGui.ViewModel
 
         private async void OnScan(object obj)
         {
-            var scanPath = ScanPathBound;
+            var scanPath = ScanPath;
 
             try
             {
                 Busy = true;
 
                 // Determine file or directory.
-                var fileAttributes = File.GetAttributes(ScanPathBound);
+                var fileAttributes = File.GetAttributes(ScanPath);
                 if ((fileAttributes & FileAttributes.Directory) == FileAttributes.Directory)
                 {
                     await ScanDirectory(scanPath);
@@ -178,7 +178,7 @@ namespace ClamAV.Managed.Samples.AsyncGui.ViewModel
 
         private bool CanScan(object obj)
         {
-            return !string.IsNullOrWhiteSpace(ScanPathBound) && !Busy;
+            return !string.IsNullOrWhiteSpace(ScanPath) && !Busy;
         }
 
         private async Task ScanFile(string scanPath)
