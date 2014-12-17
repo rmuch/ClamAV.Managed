@@ -3,7 +3,9 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
-        Title="Virus Scanner" Height="380" Width="540">
+        Title="Virus Scanner"
+        Height="380" Width="540"
+        Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
     <Grid>
         <TextBox x:Name="PathBox"
                  Height="20"
