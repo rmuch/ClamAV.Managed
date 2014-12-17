@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
         Title="Virus Scanner"
         Height="380" Width="540"
-        Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
+        Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"
+        WindowStartupLocation="CenterScreen">
     <Grid>
         <TextBox x:Name="PathBox"
                  Height="20"
