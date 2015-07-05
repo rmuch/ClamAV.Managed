@@ -44,6 +44,7 @@
     <Compile Include="ClamEngine.cs" />
     <Compile Include="ClamError.cs" />
     <Compile Include="ClamException.cs" />
+    <Compile Include="IClamEngine.cs" />
     <Compile Include="ScanResult.cs" />
     <Compile Include="LoadOptions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

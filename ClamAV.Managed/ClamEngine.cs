@@ -27,7 +27,7 @@ namespace ClamAV.Managed
     /// <summary>
     /// Encapsulates an instance of the ClamAV engine.
     /// </summary>
-    public class ClamEngine : IDisposable
+    public class ClamEngine : IDisposable, IClamEngine
     {
         #region Global Initialization
 
