@@ -1,6 +1,6 @@
 ﻿/*
  * ClamAV.Managed - Managed bindings for ClamAV
- * Copyright (C) 2011, 2013-2014 Rupert Muchembled
+ * Copyright (C) 2011, 2013-2014, 2016 Rupert Muchembled
  * 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,6 +20,7 @@
 /*
  * libclamav copyright notice from clamav.h
  * 
+ * Copyright (C) 2015 Cisco Systems, Inc. and/or its affiliates. All rights reserved.
  * Copyright (C) 2007-2013 Sourcefire, Inc.
  *
  * Authors: Tomasz Kojm
@@ -121,6 +122,9 @@ namespace ClamAV.Managed
         internal const uint CL_DB_UNSIGNED = 0x10000;
         internal const uint CL_DB_BYTECODE_STATS = 0x20000;
         internal const uint CL_DB_ENHANCED = 0x40000;
+        internal const uint CL_DB_PCRE_STATS = 0x80000;
+        internal const uint CL_DB_YARA_EXCLUDE = 0x100000;
+        internal const uint CL_DB_YARA_ONLY = 0x200000;
 
         /* recommended db settings */
         internal const uint CL_DB_STDOPT = (CL_DB_PHISHING | CL_DB_PHISHING_URLS | CL_DB_BYTECODE);
@@ -149,7 +153,11 @@ namespace ClamAV.Managed
         internal const uint CL_SCAN_BLOCKMACROS = 0x100000;
         internal const uint CL_SCAN_ALLMATCHES = 0x200000;
         internal const uint CL_SCAN_SWF = 0x400000;
-
+        internal const uint CL_SCAN_PARTITION_INTXN = 0x800000;
+        internal const uint CL_SCAN_XMLDOCS = 0x1000000;
+        internal const uint CL_SCAN_HWP3 = 0x2000000;
+        internal const uint CL_SCAN_FILE_PROPERTIES = 0x10000000;
+        // internal const uint UNUSED = 0x20000000;
         internal const uint CL_SCAN_PERFORMANCE_INFO = 0x40000000; /* collect performance timings */
         internal const uint CL_SCAN_INTERNAL_COLLECT_SHA = 0x80000000; /* Enables hash output in sha-collect builds - for internal use only */
 
@@ -165,6 +173,9 @@ namespace ClamAV.Managed
         internal const uint ENGINE_OPTIONS_NONE = 0x0;
         internal const uint ENGINE_OPTIONS_DISABLE_CACHE = 0x1;
         internal const uint ENGINE_OPTIONS_FORCE_TO_DISK = 0x2;
+        internal const uint ENGINE_OPTIONS_DISABLE_PE_STATS = 0x4;
+        internal const uint ENGINE_OPTIONS_DISABLE_PE_CERTS = 0x8;
+        internal const uint ENGINE_OPTIONS_PE_DUMPCERTS = 0x10;
 
         internal const uint CL_INIT_DEFAULT = 0x0;
 
@@ -176,31 +187,42 @@ namespace ClamAV.Managed
 
         internal enum cl_engine_field
         {
-            CL_ENGINE_MAX_SCANSIZE,	       /* uint64_t */
-            CL_ENGINE_MAX_FILESIZE,	       /* uint64_t */
-            CL_ENGINE_MAX_RECURSION,	   /* uint32_t*/
-            CL_ENGINE_MAX_FILES,	       /* uint32_t */
-            CL_ENGINE_MIN_CC_COUNT,	       /* uint32_t */
-            CL_ENGINE_MIN_SSN_COUNT,	   /* uint32_t */
-            CL_ENGINE_PUA_CATEGORIES,	   /* (char *) */
-            CL_ENGINE_DB_OPTIONS,	       /* uint32_t */
-            CL_ENGINE_DB_VERSION,	       /* uint32_t */
-            CL_ENGINE_DB_TIME,		       /* time_t */
-            CL_ENGINE_AC_ONLY,		       /* uint32_t */
-            CL_ENGINE_AC_MINDEPTH,	       /* uint32_t */
-            CL_ENGINE_AC_MAXDEPTH,	       /* uint32_t */
-            CL_ENGINE_TMPDIR,		       /* (char *) */
-            CL_ENGINE_KEEPTMP,		       /* uint32_t */
-            CL_ENGINE_BYTECODE_SECURITY,   /* uint32_t */
-            CL_ENGINE_BYTECODE_TIMEOUT,    /* uint32_t */
-            CL_ENGINE_BYTECODE_MODE,       /* uint32_t */
-            CL_ENGINE_MAX_EMBEDDEDPE,      /* uint64_t */
-            CL_ENGINE_MAX_HTMLNORMALIZE,   /* uint64_t */
-            CL_ENGINE_MAX_HTMLNOTAGS,      /* uint64_t */
-            CL_ENGINE_MAX_SCRIPTNORMALIZE, /* uint64_t */
-            CL_ENGINE_MAX_ZIPTYPERCG,      /* uint64_t */
-            CL_ENGINE_FORCETODISK,         /* uint32_t */
-            CL_ENGINE_DISABLE_CACHE        /* uint32_t */
+            CL_ENGINE_MAX_SCANSIZE,	        /* uint64_t */
+            CL_ENGINE_MAX_FILESIZE,	        /* uint64_t */
+            CL_ENGINE_MAX_RECURSION,	    /* uint32_t*/
+            CL_ENGINE_MAX_FILES,	        /* uint32_t */
+            CL_ENGINE_MIN_CC_COUNT,	        /* uint32_t */
+            CL_ENGINE_MIN_SSN_COUNT,	    /* uint32_t */
+            CL_ENGINE_PUA_CATEGORIES,	    /* (char *) */
+            CL_ENGINE_DB_OPTIONS,	        /* uint32_t */
+            CL_ENGINE_DB_VERSION,	        /* uint32_t */
+            CL_ENGINE_DB_TIME,		        /* time_t */
+            CL_ENGINE_AC_ONLY,		        /* uint32_t */
+            CL_ENGINE_AC_MINDEPTH,	        /* uint32_t */
+            CL_ENGINE_AC_MAXDEPTH,	        /* uint32_t */
+            CL_ENGINE_TMPDIR,		        /* (char *) */
+            CL_ENGINE_KEEPTMP,		        /* uint32_t */
+            CL_ENGINE_BYTECODE_SECURITY,    /* uint32_t */
+            CL_ENGINE_BYTECODE_TIMEOUT,     /* uint32_t */
+            CL_ENGINE_BYTECODE_MODE,        /* uint32_t */
+            CL_ENGINE_MAX_EMBEDDEDPE,       /* uint64_t */
+            CL_ENGINE_MAX_HTMLNORMALIZE,    /* uint64_t */
+            CL_ENGINE_MAX_HTMLNOTAGS,       /* uint64_t */
+            CL_ENGINE_MAX_SCRIPTNORMALIZE,  /* uint64_t */
+            CL_ENGINE_MAX_ZIPTYPERCG,       /* uint64_t */
+            CL_ENGINE_FORCETODISK,          /* uint32_t */
+            CL_ENGINE_DISABLE_CACHE,        /* uint32_t */
+            CL_ENGINE_DISABLE_PE_STATS,     /* uint32_t */
+            CL_ENGINE_STATS_TIMEOUT,        /* uint32_t */
+            CL_ENGINE_MAX_PARTITIONS,       /* uint32_t */
+            CL_ENGINE_MAX_ICONSPE,          /* uint32_t */
+            CL_ENGINE_MAX_RECHWP3,          /* uint32_t */
+            CL_ENGINE_TIME_LIMIT,           /* uint32_t */
+            CL_ENGINE_PCRE_MATCH_LIMIT,     /* uint64_t */
+            CL_ENGINE_PCRE_RECMATCH_LIMIT,  /* uint64_t */
+            CL_ENGINE_PCRE_MAX_FILESIZE,    /* uint64_t */
+            CL_ENGINE_DISABLE_PE_CERTS,     /* uint32_t */
+            CL_ENGINE_PE_DUMPCERTS          /* uint32_t */
         };
 
         internal enum bytecode_security
