@@ -1,6 +1,6 @@
 ﻿/*
  * ClamAV.Managed - Managed bindings for ClamAV
- * Copyright (C) 2011, 2013-2014 Rupert Muchembled
+ * Copyright (C) 2011, 2013-2014, 2016 Rupert Muchembled
  * 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -69,13 +69,13 @@ namespace ClamAV.Managed
         internal ClamException(int errorCode, string message)
         {
             if (errorCode == 0)
-                throw new ArgumentException("error code indicates success", "errorCode");
+                throw new ArgumentException("error code indicates success", nameof(errorCode));
 
             if (errorCode < 1 || errorCode >= (int)ClamError.LastError)
-                throw new ArgumentException("error code is an unexpected value", "errorCode");
+                throw new ArgumentException("error code is an unexpected value", nameof(errorCode));
 
             if (string.IsNullOrWhiteSpace(message))
-                throw new ArgumentNullException("message");
+                throw new ArgumentNullException(nameof(message));
 
             _errorCode = errorCode;
             _message = message;

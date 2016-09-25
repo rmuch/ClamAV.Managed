@@ -1,6 +1,6 @@
 ﻿/*
  * ClamAV.Managed - Managed bindings for ClamAV
- * Copyright (C) 2011, 2013-2015 Rupert Muchembled
+ * Copyright (C) 2011, 2013-2016 Rupert Muchembled
  * 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -684,7 +684,7 @@ namespace ClamAV.Managed
         {
             // Validate arguments.
             if (string.IsNullOrEmpty(path))
-                throw new ArgumentNullException("path");
+                throw new ArgumentNullException(nameof(path));
 
             uint signo = 0;
             uint optnum = 0;
@@ -731,7 +731,7 @@ namespace ClamAV.Managed
         {
             // Validate arguments.
             if (string.IsNullOrEmpty(filePath))
-                throw new ArgumentNullException("filePath");
+                throw new ArgumentNullException(nameof(filePath));
 
             IntPtr virusNamePtr = IntPtr.Zero;
 
@@ -806,10 +806,10 @@ namespace ClamAV.Managed
         {
             // Validate arguments.
             if (string.IsNullOrEmpty(directoryPath))
-                throw new ArgumentNullException("directoryPath");
+                throw new ArgumentNullException(nameof(directoryPath));
 
             if (fileScannedCallback == null)
-                throw new ArgumentNullException("fileScannedCallback");
+                throw new ArgumentNullException(nameof(fileScannedCallback));
 
             if (maxDepth < 0)
                 throw new ArgumentException("maxDepth must be 0 or greater.");
