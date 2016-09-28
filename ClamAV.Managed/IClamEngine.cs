@@ -1,6 +1,6 @@
 /*
  * ClamAV.Managed - Managed bindings for ClamAV
- * Copyright (C) 2011, 2013-2015 Rupert Muchembled
+ * Copyright (C) 2011, 2013-2016 Rupert Muchembled
  * 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -199,7 +199,7 @@ namespace ClamAV.Managed
         /// </summary>
         /// <param name="directoryPath">Path to scan.</param>
         /// <param name="fileScannedCallback">Called after a file has been scanned.</param>
-        void ScanDirectory(string directoryPath, ClamEngine.FileScannedCallback fileScannedCallback);
+        void ScanDirectory(string directoryPath, FileScannedCallback fileScannedCallback);
 
         /// <summary>
         /// Scan a directory for viruses with custom scan options, recursing into subdirectories.
@@ -207,7 +207,7 @@ namespace ClamAV.Managed
         /// <param name="directoryPath">Path to scan.</param>
         /// <param name="scanOptions">Scan options.</param>
         /// <param name="fileScannedCallback">Called after a file has been scanned.</param>
-        void ScanDirectory(string directoryPath, ScanOptions scanOptions, ClamEngine.FileScannedCallback fileScannedCallback);
+        void ScanDirectory(string directoryPath, ScanOptions scanOptions, FileScannedCallback fileScannedCallback);
 
         /// <summary>
         /// Scan a directory for viruses, optionally recursing into subdirectories.
@@ -217,6 +217,6 @@ namespace ClamAV.Managed
         /// <param name="fileScannedCallback">Called after a file has been scanned.</param>
         /// <param name="recurse">Enter subdirectories.</param>
         /// <param name="maxDepth">Maximum depth to scan, or zero for unlimited.</param>
-        void ScanDirectory(string directoryPath, ScanOptions scanOptions, ClamEngine.FileScannedCallback fileScannedCallback, bool recurse, int maxDepth);
+        void ScanDirectory(string directoryPath, ScanOptions scanOptions, FileScannedCallback fileScannedCallback, bool recurse, int maxDepth);
     }
 }
