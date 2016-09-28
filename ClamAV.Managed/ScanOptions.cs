@@ -1,6 +1,6 @@
 ﻿/*
  * ClamAV.Managed - Managed bindings for ClamAV
- * Copyright (C) 2011, 2013-2014 Rupert Muchembled
+ * Copyright (C) 2011, 2013-2014, 2016 Rupert Muchembled
  * 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -114,6 +114,22 @@ namespace ClamAV.Managed
         /// <summary>
         /// Enable scanning of SWF files.
         /// </summary>
-        SWF = 0x400000
+        SWF = 0x400000,
+        /// <summary>
+        /// Detect partition intersections in raw DMGs using heuristics.
+        /// </summary>
+        PartitionIntersections = 0x800000,
+        /// <summary>
+        /// Scan XML-based document files. If this option is turned off, the files will still be scanned, but without additional processing.
+        /// </summary>
+        XmlDocs = 0x1000000,
+        /// <summary>
+        /// Scan HPW3 document files. If this option is turned off, the files will still be scanned, but without additional processing.
+        /// </summary>
+        Hwp3 = 0x2000000,
+        /// <summary>
+        /// Collect performance timings.
+        /// </summary>
+        ScanPerformanceInfo = 0x40000000
     }
 }
