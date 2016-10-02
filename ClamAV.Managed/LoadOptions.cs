@@ -1,6 +1,6 @@
 ﻿/*
  * ClamAV.Managed - Managed bindings for ClamAV
- * Copyright (C) 2011, 2013-2014 Rupert Muchembled
+ * Copyright (C) 2011, 2013-2014, 2016 Rupert Muchembled
  * 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -66,6 +66,22 @@ namespace ClamAV.Managed
         /// <summary>
         /// Collect and print bytecode performance statistics.
         /// </summary>
-        BytecodeStats = 0x20000
+        BytecodeStats = 0x20000,
+        /// <summary>
+        /// 
+        /// </summary>
+        Enhanced = 0x40000,
+        /// <summary>
+        /// WHAT?
+        /// </summary>
+        PcreStats = 0x80000,
+        /// <summary>
+        /// WTF is YARA?
+        /// </summary>
+        YaraExclude = 0x100000,
+        /// <summary>
+        /// WTF is YARA?
+        /// </summary>
+        YaraOnly = 0x200000
     }
 }
