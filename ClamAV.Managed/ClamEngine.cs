@@ -148,7 +148,7 @@ namespace ClamAV.Managed
         /// </summary>
         /// <param name="setting">Setting key.</param>
         /// <returns>Setting value.</returns>
-        internal long EngineGetNum(UnsafeNativeMethods.cl_engine_field setting)
+        private long EngineGetNum(UnsafeNativeMethods.cl_engine_field setting)
         {
             int error = 0;
             long numValue = UnsafeNativeMethods.cl_engine_get_num(_engine, setting, ref error);
@@ -164,7 +164,7 @@ namespace ClamAV.Managed
         /// </summary>
         /// <param name="setting">Setting key.</param>
         /// <param name="value">Setting value.</param>
-        internal void EngineSetNum(UnsafeNativeMethods.cl_engine_field setting, long value)
+        private void EngineSetNum(UnsafeNativeMethods.cl_engine_field setting, long value)
         {
             int error = UnsafeNativeMethods.cl_engine_set_num(_engine, setting, value);
 
@@ -177,7 +177,7 @@ namespace ClamAV.Managed
         /// </summary>
         /// <param name="setting">Setting key.</param>
         /// <returns>Setting value.</returns>
-        internal string EngineGetStr(UnsafeNativeMethods.cl_engine_field setting)
+        private string EngineGetStr(UnsafeNativeMethods.cl_engine_field setting)
         {
             int error = 0;
             IntPtr strPtr = UnsafeNativeMethods.cl_engine_get_str(_engine, setting, ref error);
@@ -193,7 +193,7 @@ namespace ClamAV.Managed
         /// </summary>
         /// <param name="setting">Setting key.</param>
         /// <param name="value">Setting value.</param>
-        internal void EngineSetStr(UnsafeNativeMethods.cl_engine_field setting, string value)
+        private void EngineSetStr(UnsafeNativeMethods.cl_engine_field setting, string value)
         {
             int error = UnsafeNativeMethods.cl_engine_set_str(_engine, setting, value);
 
@@ -545,8 +545,7 @@ namespace ClamAV.Managed
                 EngineSetNum(UnsafeNativeMethods.cl_engine_field.CL_ENGINE_MAX_ZIPTYPERCG, (long)value);
             }
         }
-
-#if PRERELEASE
+        
         /// <summary>
         /// This option causes memory or nested map scans to dump the content to disk.
         /// </summary>
@@ -579,7 +578,195 @@ namespace ClamAV.Managed
                 EngineSetNum(UnsafeNativeMethods.cl_engine_field.CL_ENGINE_DISABLE_CACHE, value ? 1 : 0);
             }
         }
-#endif
+
+        /// <summary>
+        /// Disable submission of PE section statistical data.
+        /// </summary>
+        public bool DisablePeStats
+        {
+            get
+            {
+                return EngineGetNum(UnsafeNativeMethods.cl_engine_field.CL_ENGINE_DISABLE_PE_STATS) != 0;
+            }
+            set
+            {
+                EngineSetNum(UnsafeNativeMethods.cl_engine_field.CL_ENGINE_DISABLE_PE_STATS, value ? 1 : 0);
+            }
+        }
+
+        /// <summary>
+        /// Timeout in seconds to timeout communication with the stats server.
+        /// </summary>
+        public uint StatsTimeout
+        {
+            get
+            {
+                return (uint)EngineGetNum(UnsafeNativeMethods.cl_engine_field.CL_ENGINE_STATS_TIMEOUT);
+            }
+            set
+            {
+                EngineSetNum(UnsafeNativeMethods.cl_engine_field.CL_ENGINE_STATS_TIMEOUT, (long)value);
+            }
+        }
+
+        /// <summary>
+        /// This option sets the maximum number of partitions of a raw disk image to be scanned.
+        /// Raw disk images with more partitions than this value will have up to the value number partitions scanned.
+        /// Negative values are not allowed.
+        /// 
+        /// WARNING: setting this limit too high may result in severe damage or impact performance.
+        /// </summary>
+        public uint MaxPartitions
+        {
+            get
+            {
+                return (uint)EngineGetNum(UnsafeNativeMethods.cl_engine_field.CL_ENGINE_MAX_PARTITIONS);
+            }
+            set
+            {
+                EngineSetNum(UnsafeNativeMethods.cl_engine_field.CL_ENGINE_MAX_PARTITIONS, (long)value);
+            }
+        }
+
+        /// <summary>
+        /// This option sets the maximum number of icons within a PE to be scanned.
+        /// PE files with more icons than this value will have up to the value number icons scanned.
+        /// Negative values are not allowed.
+        /// 
+        /// WARNING: setting this limit too high may result in severe damage or impact performance.
+        /// </summary>
+        public uint MaxIconSpe
+        {
+            get
+            {
+                return (uint)EngineGetNum(UnsafeNativeMethods.cl_engine_field.CL_ENGINE_MAX_ICONSPE);
+            }
+            set
+            {
+                EngineSetNum(UnsafeNativeMethods.cl_engine_field.CL_ENGINE_MAX_ICONSPE, value);
+            }
+        }
+
+        /// <summary>
+        /// This option sets the maximum recursive calls to HWP3 parsing function.
+        /// HWP3 files using more than this limit will be terminated and alert the user.
+        /// Scans will be unable to scan any HWP3 attachments if the recursive limit is reached.
+        /// Negative values are not allowed.
+        /// 
+        /// WARNING: setting this limit too high may result in severe damage or impact performance.
+        /// </summary>
+        public uint MaxRecHwp3
+        {
+            get
+            {
+                return (uint)EngineGetNum(UnsafeNativeMethods.cl_engine_field.CL_ENGINE_MAX_RECHWP3);
+            }
+            set
+            {
+                EngineSetNum(UnsafeNativeMethods.cl_engine_field.CL_ENGINE_MAX_RECHWP3, value);
+            }
+        }
+
+        /// <summary>
+        /// This clamscan option is currently for testing only. It sets the engine parameter CL_ENGINE_TIME_LIMIT. The value is in milliseconds.     
+        /// </summary>
+        public uint TimeLimit
+        {
+            get
+            {
+                return (uint)EngineGetNum(UnsafeNativeMethods.cl_engine_field.CL_ENGINE_TIME_LIMIT);
+            }
+            set
+            {
+                EngineSetNum(UnsafeNativeMethods.cl_engine_field.CL_ENGINE_TIME_LIMIT, value);
+            }
+        }
+
+        /// <summary>
+        /// This option sets the maximum calls to the PCRE match function during an instance of regex matching.
+        /// Instances using more than this limit will be terminated and alert the user but the scan will continue.
+        /// For more information on match_limit, see the PCRE documentation.
+        /// 
+        /// Negative values are not allowed.
+        /// 
+        /// WARNING: setting this limit too high may severely impact performance.
+        /// </summary>
+        public ulong PcreMatchLimit
+        {
+            get
+            {
+                return (ulong)EngineGetNum(UnsafeNativeMethods.cl_engine_field.CL_ENGINE_PCRE_MATCH_LIMIT);
+            }
+            set
+            {
+                EngineSetNum(UnsafeNativeMethods.cl_engine_field.CL_ENGINE_PCRE_MATCH_LIMIT, (long)value);
+            }
+        }
+
+        /// <summary>
+        /// This option sets the maximum recursive calls to the PCRE match function during an instance of regex matching.
+        /// Instances using more than this limit will be terminated and alert the user but the scan will continue.
+        /// For more information on match_limit_recursion, see the PCRE documentation.
+        /// Negative values are not allowed and values > PCREMatchLimit are superfluous.
+        /// 
+        /// WARNING: setting this limit too high may severely impact performance.
+        /// </summary>
+        public ulong PcreRecMatchLimit
+        {
+            get
+            {
+                return (ulong)EngineGetNum(UnsafeNativeMethods.cl_engine_field.CL_ENGINE_PCRE_RECMATCH_LIMIT);
+            }
+            set
+            {
+                EngineSetNum(UnsafeNativeMethods.cl_engine_field.CL_ENGINE_PCRE_RECMATCH_LIMIT, (long)value);
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public ulong PcreMaxFilesize
+        {
+            get
+            {
+                return (ulong)EngineGetNum(UnsafeNativeMethods.cl_engine_field.CL_ENGINE_PCRE_MAX_FILESIZE);
+            }
+            set
+            {
+                EngineSetNum(UnsafeNativeMethods.cl_engine_field.CL_ENGINE_MAX_FILESIZE, (long)value);
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public bool DisablePeCerts
+        { 
+            get
+            {
+                return EngineGetNum(UnsafeNativeMethods.cl_engine_field.CL_ENGINE_DISABLE_PE_CERTS) != 0;
+            }
+            set
+            {
+                EngineSetNum(UnsafeNativeMethods.cl_engine_field.CL_ENGINE_DISABLE_PE_CERTS, value ? 1 : 0);
+            }
+        }
+
+        /// <summary>
+        /// Dump PE certificates.
+        /// </summary>
+        public bool PeDumpCerts
+        {
+            get
+            {
+                return EngineGetNum(UnsafeNativeMethods.cl_engine_field.CL_ENGINE_PE_DUMPCERTS) != 0;
+            }
+            set
+            {
+                EngineSetNum(UnsafeNativeMethods.cl_engine_field.CL_ENGINE_PE_DUMPCERTS, value ? 1 : 0);
+            }
+        }
 
         #endregion
 

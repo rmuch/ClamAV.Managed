@@ -263,8 +263,7 @@ namespace ClamAV.Managed.Tests
 
             Assert.AreEqual(value, _clamEngine.MaxZipTypeRcg);
         }
-
-#if PRERELEASE
+        
         [Test]
         public void ForceToDiskIsReadWritable()
         {
@@ -284,6 +283,115 @@ namespace ClamAV.Managed.Tests
 
             Assert.AreEqual(value, _clamEngine.DisableCache);
         }
-#endif
+
+        [Test]
+        public void DisablePeStatsIsReadWritable()
+        {
+            var value = true;
+
+            _clamEngine.DisablePeStats = value;
+
+            Assert.AreEqual(value, _clamEngine.DisablePeStats);
+        }
+
+        [Test]
+        public void StatsTimeoutIsReadWritable()
+        {
+            uint value = 123;
+
+            _clamEngine.StatsTimeout = value;
+
+            Assert.AreEqual(value, _clamEngine.StatsTimeout);
+        }
+
+        [Test]
+        public void MaxPartitionsIsReadWritable()
+        {
+            uint value = 9;
+
+            _clamEngine.MaxPartitions = value;
+
+            Assert.AreEqual(value, _clamEngine.MaxPartitions);
+        }
+
+        [Test]
+        public void MaxIconSpeIsReadWritable()
+        {
+            uint value = 7;
+
+            _clamEngine.MaxIconSpe = value;
+
+            Assert.AreEqual(value, _clamEngine.MaxIconSpe);
+        }
+
+        [Test]
+        public void MaxRecHwp3IsReadWritable()
+        {
+            uint value = 5;
+
+            _clamEngine.MaxRecHwp3 = value;
+
+            Assert.AreEqual(value, _clamEngine.MaxRecHwp3);
+        }
+
+        [Test]
+        public void TimeLimitIsReadWritable()
+        {
+            uint value = 119;
+
+            _clamEngine.TimeLimit = value;
+
+            Assert.AreEqual(value, _clamEngine.TimeLimit);
+        }
+
+        [Test]
+        public void PcreMatchLimitIsReadWritable()
+        {
+            uint value = 17;
+
+            _clamEngine.PcreMatchLimit = value;
+
+            Assert.AreEqual(value, _clamEngine.PcreMatchLimit);
+        }
+
+        [Test]
+        public void PcreRecMatchLimitIsReadWritable()
+        {
+            uint value = 119;
+
+            _clamEngine.PcreRecMatchLimit = value;
+
+            Assert.AreEqual(value, _clamEngine.PcreRecMatchLimit);
+        }
+
+        [Test]
+        public void PcreMaxFilesizeIsReadWritable()
+        {
+            uint value = 17;
+
+            _clamEngine.PcreMaxFilesize = value;
+
+            Assert.AreEqual(value, _clamEngine.PcreMaxFilesize);
+        }
+
+        [Test]
+        public void DisablePeCertsIsReadWritable()
+        {
+            var value = true;
+
+            _clamEngine.DisablePeCerts = value;
+
+            Assert.AreEqual(value, _clamEngine.DisablePeCerts);
+        }
+
+        [Test]
+        public void PeDumpCertsIsReadWritable()
+        {
+            var value = true;
+
+            _clamEngine.PeDumpCerts = value;
+
+            Assert.AreEqual(value, _clamEngine.PeDumpCerts);
+        }
     }
 }
