@@ -319,6 +319,20 @@ namespace ClamAV.Managed
         [DllImport(libraryName, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
         internal static extern void cl_engine_set_clcb_post_scan(IntPtr engine, clcb_post_scan callback);
 
+        internal delegate void clcb_virus_found(int fd, string virname, IntPtr context);
+        //typedef void (*clcb_virus_found)(int fd, const char* virname, void* context);
+        /* VIRUS FOUND
+           Called for each virus found.
+        Input:
+        fd      = File descriptor which is was scanned
+        virname = Virus name 
+        context = Opaque application provided data
+        Output:
+        none
+        */
+        //extern void cl_engine_set_clcb_virus_found(struct cl_engine *engine, clcb_virus_found callback);
+        [DllImport(libraryName, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
+        internal static extern void cl_engine_set_clcb_virus_found(IntPtr engine, clcb_virus_found callback);
 
         internal delegate int clcb_sigload(IntPtr type, IntPtr name, IntPtr context);
         /* SIGNATURE LOAD
@@ -498,5 +512,10 @@ namespace ClamAV.Managed
         /* Scan custom data */
         [DllImport(libraryName, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
         internal static extern int cl_scanmap_callback(IntPtr map, ref string virname, ref ulong scanned, IntPtr engine, uint scanoptions, IntPtr context);
+
+
+        // Crypto API
+        // Since 2 Jul 2014, the Crypto API has been moved to clamav.h
+        // TODO: Implement in managed code
     }
 }
