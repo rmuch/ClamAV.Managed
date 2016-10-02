@@ -952,13 +952,9 @@ namespace ClamAV.Managed
             }
         }
 
-        /// <summary>
-        /// Delegate for file scan completion callback.
-        /// </summary>
-        /// <param name="path">Path to file which has been scanned.</param>
-        /// <param name="result">Scan parameters.</param>
-        /// <param name="virusName">Signature name if file is infected.</param>
-        public delegate void FileScannedCallback(string path, ScanResult result, string virusName);
+        #endregion
+        
+        #region Directory Scanning
 
         /// <summary>
         /// Scan a directory for viruses with default scan options, recursing into subdirectories.
