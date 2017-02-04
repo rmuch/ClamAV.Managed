@@ -1,10 +1,20 @@
 ClamAV.Managed Change Log
 =========================
 
-0.3.0.0 - Current
------------------
+0.3.0.0 - 4 February 2017
+-------------------------
 
-ClamAV.Managed 0.3.0.0 is the third release of the project.
+ClamAV.Managed 0.3.0.0 is the third release of the project. As well as bringing
+the library up to date with the latest versions of ClamAV, there have been
+substantial improvements across the codebase, in summary:
+
+ * Upgraded from ClamAV 0.97 to 0.99, adding support for settings and functions
+   new in the latest version.
+ * Improved quality and adherence to standards in the asynchronous (WPF) scan
+   sample.
+ * Updated dependencies, including the .NET Framework version.
+ * Improved testability by extracting an IClamEngine interface to facilitate
+   easier mocking.
 
 0.2.0.0 - 5 May 2014
 --------------------
