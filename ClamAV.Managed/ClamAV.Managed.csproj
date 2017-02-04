@@ -50,6 +50,7 @@
     <Compile Include="FileScannedCallback.cs" />
     <Compile Include="IClamEngine.cs" />
     <Compile Include="IClamEngineSettings.cs" />
+    <Compile Include="ClamEngine.Settings.cs" />
     <Compile Include="ScanResult.cs" />
     <Compile Include="LoadOptions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
