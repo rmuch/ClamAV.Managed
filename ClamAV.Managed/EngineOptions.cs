@@ -21,5 +21,16 @@ using System;
 
 namespace ClamAV.Managed
 {
+    /// <summary>
+    /// Option flags for performing scans.
+    /// </summary>
+    [Flags]
+    public enum EngineOptions : uint
+    {
+         
+
+
+
+    }
 
 }
