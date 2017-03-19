@@ -28,8 +28,17 @@ namespace ClamAV.Managed
     public enum EngineOptions : uint
     {
          
-
-
+        None = 0x0,
+        
+        DisableCache = 0x1,
+        
+        ForceToDisk = 0x2,
+        
+        DisablePEStats = 0x4,
+        
+        DisablePECerts = 0x8,
+        
+        PEDumpCerts =  0x10
 
     }
 
