@@ -176,7 +176,7 @@ namespace ClamAV.Managed.Async
                 }
             }
 
-            var scanTasks = scanQueue.Select(engine.ScanFileAsync);
+            var scanTasks = scanQueue.Select(filePath => engine.ScanFileAsync(filePath, options));
             var scanResults = await Task.WhenAll(scanTasks);
 
             return scanResults;
