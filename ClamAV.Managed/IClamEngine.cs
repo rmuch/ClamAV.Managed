@@ -37,11 +37,6 @@ namespace ClamAV.Managed
         string DatabaseDirectory { get; }
 
         /// <summary>
-        /// Free the unmanaged resource associated with this ClamAV engine instance.
-        /// </summary>
-        void Dispose();
-
-        /// <summary>
         /// Load databases from the default hardcoded path using standard options.
         /// </summary>
         void LoadDatabase();
