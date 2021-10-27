@@ -53,6 +53,9 @@ namespace ClamAV.Managed
         // Name of the ClamAV library to be located within the library search path.
         internal const string libraryName = "libclamav";
 
+        // ReSharper disable InconsistentNaming
+        // ReSharper disable IdentifierTypo
+
         // For ease of access.
         internal const uint CL_SUCCESS = 0;
 
@@ -512,7 +515,9 @@ namespace ClamAV.Managed
         /* Scan custom data */
         [DllImport(libraryName, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
         internal static extern int cl_scanmap_callback(IntPtr map, ref string virname, ref ulong scanned, IntPtr engine, uint scanoptions, IntPtr context);
-
+        
+        // ReSharper restore IdentifierTypo
+        // ReSharper restore InconsistentNaming
 
         // Crypto API
         // Since 2 Jul 2014, the Crypto API has been moved to clamav.h
