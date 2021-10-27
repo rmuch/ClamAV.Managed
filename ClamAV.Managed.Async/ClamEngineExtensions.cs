@@ -154,7 +154,7 @@ namespace ClamAV.Managed.Async
                 if ((attributes & FileAttributes.Directory) == FileAttributes.Directory)
                 {
                     // Check if we're not about to go too deep.
-                    if (maxDepth == 0 || currentDepth < maxDepth)
+                    if (recurse && (maxDepth == 0 || currentDepth < maxDepth))
                     {
                         var subFiles = Directory.GetFiles(currentPath);
                         foreach (var file in subFiles)
