@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="ClamEngineExtensions.cs" />
     <Compile Include="FileScanResult.cs" />
+    <Compile Include="IFileScanResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
